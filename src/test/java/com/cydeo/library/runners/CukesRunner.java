@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
                 "me.jvt.cucumber.report.PrettyReports:target/cucumber",
         },
         features = { "src/test/resources/features/login_feature",
-                "src/test/resources/features/login.feature/logout_feature" },
+                "src/test/resources/features/logout_feature" },
         glue = "com/cydeo/library/step_definitions",
         dryRun = false,
         //tags = "@wip",
