@@ -14,13 +14,13 @@ Feature: Logout function
     And user clicks login button
     And user can logged in
 
-
+  @SEAMLES-1932
   Scenario: US002_AC1_TC1 User can log out and ends up in login page
     When user clicks avatar image
     And user clicks Log out link
     Then user can log out and see log in page
 
-  @wip
+  @SEAMLES-1934 @smoke
   Scenario:  US002_AC2_TC1 User can not go to dashboard page again after logout
     When user clicks avatar image
     And user clicks Log out link

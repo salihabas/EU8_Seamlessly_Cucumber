@@ -14,10 +14,11 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt",
                 "me.jvt.cucumber.report.PrettyReports:target/cucumber",
         },
-        features = "src/test/resources/features",
+        features = { "src/test/resources/features/login_feature",
+                "src/test/resources/features/login.feature/logout_feature" },
         glue = "com/cydeo/library/step_definitions",
         dryRun = false,
-        tags = "@wip",
+        //tags = "@wip",
         publish = false
 
 )
