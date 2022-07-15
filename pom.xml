@@ -69,9 +69,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
+
+                    <parallel>methods</parallel>
+                    <threadCount>5</threadCount>
+                    <perCoreThreadCount>false</perCoreThreadCount>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>**/*Runner.java</include>
+                        <include>**/CukesRunner.java</include>
                     </includes>
                 </configuration>
             </plugin>

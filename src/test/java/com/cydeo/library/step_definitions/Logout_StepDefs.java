@@ -13,7 +13,7 @@ public class Logout_StepDefs {
     @When("user clicks avatar image")
     public void user_clicks_avatar_image() {
 
-        dashBoardPage.avatarImage.click();
+        dashBoardPage.avatarDiv.click();
 
     }
     @When("user clicks Log out link")
@@ -25,7 +25,7 @@ public class Logout_StepDefs {
     @Then("user can log out and see log in page")
     public void user_can_log_out_and_see_log_in_page() {
 
-        Assert.assertEquals(Driver.getDriver().getTitle(), "Seamlessly -QA" );
+        Assert.assertEquals("Seamlessly", Driver.getDriver().getTitle());
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("https://qa.seamlessly.net/index.php/login"));
     }
 
@@ -38,7 +38,7 @@ public class Logout_StepDefs {
     @Then("User can not go to dashboard page and stay log in page")
     public void user_can_not_go_to_dashboard_page_and_stay_log_in_page() {
 
-        Assert.assertEquals(Driver.getDriver().getTitle(), "Seamlessly -QA" );
+        Assert.assertEquals("Seamlessly", Driver.getDriver().getTitle());
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("https://qa.seamlessly.net/index.php/login"));
 
     }

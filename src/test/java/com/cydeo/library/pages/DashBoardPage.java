@@ -14,6 +14,10 @@ public class DashBoardPage {
     @FindBy(xpath = "//img[@width='32']")
     public WebElement avatarImage;
 
+
+    @FindBy(xpath = "//div[@id='settings']")
+    public WebElement avatarDiv;
+
     @FindBy(xpath = "//li[@data-id='logout']/a")
     public WebElement logoutLink;
 }

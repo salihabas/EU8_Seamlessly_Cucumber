@@ -91,8 +91,8 @@ public class Login_StepDefs {
     @Then("User can see Reset password button")
     public void user_can_see_reset_password_button() {
 
+        System.out.println(loginPage.resetPasswordButton.getAttribute("value"));
         Assert.assertEquals(loginPage.resetPasswordButton.getAttribute("value"), "Reset password");
-
 
     }
 
