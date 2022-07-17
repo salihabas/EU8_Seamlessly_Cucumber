@@ -1,25 +1,26 @@
 package com.cydeo.library.step_definitions;
 
-import com.cydeo.library.pages.DashBoardPage;
+import com.cydeo.library.pages.BasePage;
 import com.cydeo.library.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class Logout_StepDefs {
+public class Logout_StepDefs extends BasePage {
 
-    DashBoardPage dashBoardPage = new DashBoardPage();
+    BasePage basePage = new BasePage();
+
 
     @When("user clicks avatar image")
     public void user_clicks_avatar_image() {
 
-        dashBoardPage.avatarDiv.click();
+        basePage.avatarDiv.click();
 
     }
     @When("user clicks Log out link")
     public void user_clicks_log_out_link() {
 
-        dashBoardPage.logoutLink.click();
+        basePage.logoutLink.click();
 
     }
     @Then("user can log out and see log in page")

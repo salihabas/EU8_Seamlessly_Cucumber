@@ -1,6 +1,5 @@
 package com.cydeo.library.step_definitions;
 
-import com.cydeo.library.pages.DashBoardPage;
 import com.cydeo.library.pages.LoginPage;
 import com.cydeo.library.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -11,7 +10,6 @@ import org.junit.Assert;
 public class Login_StepDefs {
 
     LoginPage loginPage = new LoginPage();
-    DashBoardPage dashBoardPage = new DashBoardPage();
     String username;
 
     @Given("user is on the login page")
@@ -33,7 +31,7 @@ public class Login_StepDefs {
     }
     @Then("user can logged in")
     public void user_can_logged_in() {
-        //Assert.assertTrue(dashBoardPage.avatarImage.getAttribute("src").toLowerCase().contains(username.toLowerCase()));
+       // Assert.assertTrue(dashBoardPage.avatarImage.getAttribute("src").toLowerCase().contains(username.toLowerCase()));
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("https://qa.seamlessly.net/index.php/apps"));
     }
 
