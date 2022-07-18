@@ -1,4 +1,4 @@
-package com.cydeo.seamlessly.utilities;
+package net.seamlessly.utilities;
 
 
 import org.junit.Assert;

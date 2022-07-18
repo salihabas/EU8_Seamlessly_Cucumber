@@ -1,7 +1,7 @@
-package com.cydeo.seamlessly.step_definitions;
+package net.seamlessly.step_definitions;
 
-import com.cydeo.seamlessly.pages.BasePage;
-import com.cydeo.seamlessly.utilities.Driver;
+import net.seamlessly.pages.BasePage;
+import net.seamlessly.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;

@@ -1,4 +1,4 @@
-package com.cydeo.seamlessly.runners;
+package net.seamlessly.runners;
 
 
 import io.cucumber.junit.Cucumber;
@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"html:target/failed-html-report"},
         features = "@target/rerun.txt",
-        glue = "com/cydeo/seamlessly/step_definitions"
+        glue = "net/seamlessly/step_definitions"
 )
 
 public class FailedTestRunner {

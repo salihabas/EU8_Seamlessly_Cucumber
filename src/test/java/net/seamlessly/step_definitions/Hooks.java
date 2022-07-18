@@ -1,6 +1,6 @@
-package com.cydeo.seamlessly.step_definitions;
+package net.seamlessly.step_definitions;
 
-import com.cydeo.seamlessly.utilities.Driver;
+import net.seamlessly.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
