@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cydeo</groupId>
-    <artifactId>cydeo-library-app</artifactId>
+    <artifactId>EU8_Seamlessly_Cucumber</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

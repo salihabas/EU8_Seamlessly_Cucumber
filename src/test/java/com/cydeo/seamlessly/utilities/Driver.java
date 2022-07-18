@@ -1,4 +1,4 @@
-package com.cydeo.library.utilities;
+package com.cydeo.seamlessly.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

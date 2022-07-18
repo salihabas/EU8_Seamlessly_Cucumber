@@ -1,6 +1,6 @@
-package com.cydeo.library.pages;
+package com.cydeo.seamlessly.pages;
 
-import com.cydeo.library.utilities.Driver;
+import com.cydeo.seamlessly.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

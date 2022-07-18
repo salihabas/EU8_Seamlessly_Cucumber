@@ -1,4 +1,4 @@
-package com.cydeo.library.runners;
+package com.cydeo.seamlessly.runners;
 
 
 import io.cucumber.junit.Cucumber;
@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
 
-        glue = "com/cydeo/library/step_definitions",
+        glue = "com/cydeo/seamlessly/step_definitions",
         dryRun = false,
         //tags = "@wip",
         publish = true
