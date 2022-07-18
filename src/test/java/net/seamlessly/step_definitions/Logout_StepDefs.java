@@ -1,26 +1,27 @@
 package net.seamlessly.step_definitions;
 
-import net.seamlessly.pages.BasePage;
-import net.seamlessly.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.seamlessly.pages.BasePage;
+import net.seamlessly.pages.DashboardPage;
+import net.seamlessly.utilities.Driver;
 import org.junit.Assert;
 
 public class Logout_StepDefs extends BasePage {
 
-    BasePage basePage = new BasePage();
+    DashboardPage dashboardPage = new DashboardPage();
 
 
     @When("user clicks avatar image")
     public void user_clicks_avatar_image() {
 
-        basePage.avatarDiv.click();
+        dashboardPage.avatarDiv.click();
 
     }
     @When("user clicks Log out link")
     public void user_clicks_log_out_link() {
 
-        basePage.logoutLink.click();
+        dashboardPage.logoutLink.click();
 
     }
     @Then("user can log out and see log in page")
