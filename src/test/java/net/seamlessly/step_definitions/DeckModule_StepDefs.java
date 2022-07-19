@@ -1,10 +1,12 @@
 package net.seamlessly.step_definitions;
 
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.DeckModulePage;
 import net.seamlessly.utilities.BrowserUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -39,5 +41,18 @@ public class DeckModule_StepDefs {
     public void user_can_see_new_board_in_the_all_boards() {
         BrowserUtils.sleep(2);
         deckModulePage.checkcreatedBoard(newBoardName);
+    }
+
+    @When("User clicks first board from the opened menu")
+    public void user_clicks_first_board_from_the_opened_menu() {
+        deckModulePage.clickfirstBoard();
+    }
+    @When("User clicks + add list button top right of the page")
+    public void user_clicks_add_list_button_top_right_of_the_page() {
+        deckModulePage.addListIcon.click();
+    }
+    @When("User enters {string} list name and presses enter key")
+    public void user_enters_list_name_and_presses_enter_key(String listName) {
+        deckModulePage.enterListNameInputBox.sendKeys(listName + Keys.ENTER);
     }
 }
