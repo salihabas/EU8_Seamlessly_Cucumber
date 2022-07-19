@@ -1,3 +1,4 @@
+@DeckModule
 Feature: Deck Module
 
   Background: Pre_condition User is on dashboard page with valid credential
@@ -42,6 +43,8 @@ Feature: Deck Module
     And User clicks any three dots button on any created card
     And User clicks the assign to me option from opened menu
     Then User profile icon should be displayed on card
+
+
 
 
 

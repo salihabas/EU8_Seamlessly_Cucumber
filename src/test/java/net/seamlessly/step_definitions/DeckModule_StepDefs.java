@@ -53,6 +53,7 @@ public class DeckModule_StepDefs {
 
     @When("User clicks + add list button top right of the page")
     public void user_clicks_add_list_button_top_right_of_the_page() {
+        BrowserUtils.sleep(1);
         deckModulePage.addListIcon.click();
         BrowserUtils.sleep(2);
     }
