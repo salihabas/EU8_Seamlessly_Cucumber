@@ -12,7 +12,7 @@ Feature: Deck Module
     When User clicks on deck module
     And User clicks to navigation toggle top-left of the page
     And User clicks to Add board entry link
-    And User enters "Office" board name in input box
+    And User enters any board name in input box
     And User clicks input confirm button
     Then User can see new board in the all boards
 
@@ -20,12 +20,28 @@ Feature: Deck Module
   Scenario: TC002
     When User clicks on deck module
     And User clicks to navigation toggle top-left of the page
-    And User clicks first board from the opened menu
+    And User clicks any created board from the opened menu
     And User clicks + add list button top right of the page
-    And User enters "To do" list name and presses enter key
+    And User enters any list name and presses enter key
     Then User can see newly created list appears under the related board;
 
+  @TC003
+  Scenario: TC003
+    When User clicks on deck module
+    And User clicks to navigation toggle top-left of the page
+    And User clicks any created board from the opened menu
+    And User clicks + add card button of any created list
+    And User enters new card name and presses enter
+    Then User can see new card appears on the related list
 
+  @TC004
+  Scenario: TC004
+    When User clicks on deck module
+    And User clicks to navigation toggle top-left of the page
+    And User clicks any created board from the opened menu
+    And User clicks any three dots button on any created card
+    And User clicks the assign to me option from opened menu
+    Then User profile icon should be displayed on card
 
 
 
