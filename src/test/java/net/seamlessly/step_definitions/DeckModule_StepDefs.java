@@ -37,6 +37,7 @@ public class DeckModule_StepDefs {
     }
     @Then("User can see new board in the all boards")
     public void user_can_see_new_board_in_the_all_boards() {
+        BrowserUtils.sleep(2);
         deckModulePage.checkcreatedBoard(newBoardName);
     }
 }
