@@ -58,4 +58,16 @@ public class DeckModulePage extends BasePage{
         boardList.get(0).click();
     }
 
+
+    public void checkCreatedListName(String listName){
+        List<WebElement> createdlists = Driver.getDriver().findElements(By.xpath("//h3[@class='stack__title has-tooltip']"));
+        int count = 0;
+        for (WebElement eachcreatedlist : createdlists) {
+            if (eachcreatedlist.getText().equals(listName)){
+                count++;
+            }
+        }
+        Assert.assertTrue(count>0);
+    }
+
 }
