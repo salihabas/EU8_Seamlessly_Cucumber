@@ -100,6 +100,6 @@ public class DeckModule_StepDefs {
     @Then("User profile icon should be displayed on card")
     public void user_profile_icon_should_be_displayed_on_card() {
         Assert.assertTrue(deckModulePage.getAfterAssignCountofAvatarsOnCards()>deckModulePage.getCountOfAvatarsOnCards());
-        ////div[@class='avatars']//div[@class='avatardiv popovermenu-wrapper has-tooltip']
+
     }
 }
