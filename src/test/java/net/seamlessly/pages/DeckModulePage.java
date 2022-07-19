@@ -1,5 +1,6 @@
 package net.seamlessly.pages;
 
+import com.github.javafaker.Faker;
 import net.seamlessly.utilities.BrowserUtils;
 import net.seamlessly.utilities.Driver;
 import org.junit.Assert;
@@ -30,6 +31,13 @@ public class DeckModulePage extends BasePage{
 
     @FindBy(xpath = "//ul[@class='app-navigation-entry__children']//span[@title]")
     public WebElement referanceOfBoardList;
+
+    @FindBy(xpath = "//button[@icon='icon-add']")
+    public WebElement addListIcon;
+
+    @FindBy(xpath = "(//input[@id='new-stack-input-main'])[1]")
+    public WebElement enterListNameInputBox;
+
     public void checkcreatedBoard (String boardName){
 
         List<WebElement> boardList = Driver.getDriver().findElements(By.xpath("//ul[@class='app-navigation-entry__children']//span[@title]"));
@@ -42,8 +50,12 @@ public class DeckModulePage extends BasePage{
         }
         Assert.assertTrue(count>0);
 
+    }
 
+    public void clickfirstBoard(){
 
+        List<WebElement> boardList = Driver.getDriver().findElements(By.xpath("//ul[@class='app-navigation-entry__children']//span[@title]"));
+        boardList.get(0).click();
     }
 
 }
