@@ -15,6 +15,7 @@ public class DeckModule_StepDefs {
 
     DeckModulePage deckModulePage = new DeckModulePage();
     String newBoardName;
+    String newListName;
 
     @When("User clicks on deck module")
     public void user_clicks_on_deck_module() {
@@ -53,6 +54,13 @@ public class DeckModule_StepDefs {
     }
     @When("User enters {string} list name and presses enter key")
     public void user_enters_list_name_and_presses_enter_key(String listName) {
-        deckModulePage.enterListNameInputBox.sendKeys(listName + Keys.ENTER);
+        newListName = listName;
+        deckModulePage.enterListNameInputBox.sendKeys(newListName + Keys.ENTER);
+        BrowserUtils.sleep(2);
+    }
+
+    @Then("User can see newly created list appears under the related board;")
+    public void user_can_see_newly_created_list_appears_under_the_related_board() {
+        deckModulePage.checkCreatedListName(newListName);
     }
 }
