@@ -23,5 +23,10 @@ Feature: Deck Module
     And User clicks first board from the opened menu
     And User clicks + add list button top right of the page
     And User enters "To do" list name and presses enter key
+    Then User can see newly created list appears under the related board;
+
+
+
+
 
 
