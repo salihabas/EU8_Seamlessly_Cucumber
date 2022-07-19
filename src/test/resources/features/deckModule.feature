@@ -8,4 +8,10 @@ Feature: Deck Module
     And user can logged in
 
 
-  Scenario:
+  Scenario: TC001
+    When User clicks on "deck module"
+    And User clicks to navigation toggle top-left of the page
+    And User clicks to Add board entry link
+    And User enters "New Board" board name in input box
+    And User clicks input confirm button
+    Then User can see new board in the all boards
