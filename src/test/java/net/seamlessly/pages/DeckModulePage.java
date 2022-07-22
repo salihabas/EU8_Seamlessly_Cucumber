@@ -177,13 +177,9 @@ public class DeckModulePage extends BasePage {
             clickAnyThreeDotsOnCards();
         }
 
-
         List<WebElement> threeDotsList = Driver.getDriver().findElements(By.xpath("//div[@class='smooth-dnd-container vertical']//div//button[@aria-label='Actions']"));
         anyThreeDotsIndexNumber = faker.number().numberBetween(0, threeDotsList.size() - 1);
         threeDotsList.get(anyThreeDotsIndexNumber).click();
-        if (!assignToMe.isDisplayed()){
-
-        }
 
     }
 
