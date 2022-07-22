@@ -18,8 +18,8 @@ import org.junit.runner.RunWith;
 
         glue = "net/seamlessly/step_definitions",
         dryRun = false,
-        tags = "@TC003",
-        publish = false
+        //tags = "@wip",
+        publish = true
 
 )
 public class CukesRunner {
