@@ -41,8 +41,8 @@ public class DeckModule_StepDefs {
     }
     @Then("User can see new board in the all boards")
     public void user_can_see_new_board_in_the_all_boards() {
-        BrowserUtils.sleep(2);
-        deckModulePage.checkcreatedBoard(deckModulePage.getNewBoardName());
+        BrowserUtils.sleep(1);
+        deckModulePage.checkcreatedBoard();
     }
 
 
@@ -55,34 +55,34 @@ public class DeckModule_StepDefs {
     public void user_clicks_add_list_button_top_right_of_the_page() {
         BrowserUtils.sleep(1);
         deckModulePage.addListIcon.click();
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(1);
     }
 
     @When("User enters any list name and presses enter key")
     public void user_enters_any_list_name_and_presses_enter_key() {
         deckModulePage.setNewListName();
         deckModulePage.enterListNameInputBox.sendKeys(deckModulePage.getNewListName() + Keys.ENTER);
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(1);
     }
 
     @Then("User can see newly created list appears under the related board;")
     public void user_can_see_newly_created_list_appears_under_the_related_board() {
-        deckModulePage.checkCreatedListName(deckModulePage.getNewListName());
+        deckModulePage.checkCreatedListName();
     }
 
     @When("User clicks + add card button of any created list")
     public void user_clicks_add_card_button_of_any_created_list() {
-        deckModulePage.clickAnyAddButtonOnTheCurrentBoard();
+        deckModulePage.clickAnyAddCardButtonOnTheCurrentBoard();
     }
     @When("User enters new card name and presses enter")
     public void user_enters_new_card_name_and_presses_enter() {
         deckModulePage.setNewCardName();
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(1);
         deckModulePage.cardNameInput.sendKeys(deckModulePage.getNewCardName() + Keys.ENTER);
     }
     @Then("User can see new card appears on the related list")
     public void user_can_see_new_card_appears_on_the_related_list() {
-        Assert.assertEquals(deckModulePage.getNewCardName(), deckModulePage.getNewCardName());
+        deckModulePage.checkCreatedCard();
     }
 
     @When("User clicks any three dots button on any created card")

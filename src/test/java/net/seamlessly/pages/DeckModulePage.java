@@ -28,6 +28,8 @@ public class DeckModulePage extends BasePage {
 
     private int afterAssignCountofAvatarsOnCards;
 
+    DeckModule_StepDefs deckModule_stepDefs;
+
 
     public int getAfterAssignCountofAvatarsOnCards() {
         return afterAssignCountofAvatarsOnCards;
@@ -97,7 +99,7 @@ public class DeckModulePage extends BasePage {
     @FindBy(xpath = "//button[@icon='icon-add']")
     public WebElement addListIcon;
 
-    @FindBy(xpath = "(//input[@id='new-stack-input-main'])[1]")
+    @FindBy(xpath = "//div[@id='stack-add']//input[@id='new-stack-input-main']")
     public WebElement enterListNameInputBox;
 
     @FindBy(xpath = "//input[@id='new-stack-input-main']")
@@ -105,6 +107,15 @@ public class DeckModulePage extends BasePage {
 
     @FindBy(xpath = "(//div[@class='open']//li//button)[1]")
     public WebElement assignToMe;
+
+    @FindBy(xpath = "//div[@class='board']//button[@icon]")
+    public WebElement addCardButtons;
+
+    @FindBy(xpath = "//div[@class='smooth-dnd-container vertical']//div//button[@aria-label='Actions']")
+    public WebElement threeDotsOnCurrentBoard;
+
+    @FindBy(xpath = "//span[.='Assign to me']")
+    public WebElement assignToMeText;
 
 
     public WebElement findBoardFromBoards(String boardName) {
@@ -118,18 +129,10 @@ public class DeckModulePage extends BasePage {
         return foundElement;
     }
 
-    public void checkcreatedBoard(String boardName) {
-
-        List<WebElement> boardList = Driver.getDriver().findElements(By.xpath("//ul[@class='app-navigation-entry__children']//span[@title]"));
-
-        int count = 0;
-        for (WebElement eachBoard : boardList) {
-            if (eachBoard.getAttribute("title").equals(boardName)) {
-                count++;
-            }
-        }
-        Assert.assertTrue(count > 0);
-
+    public void checkcreatedBoard() {
+        WebElement board = Driver.getDriver().findElement(By.xpath("//span[@title='" + newBoardName + "']") );
+        BrowserUtils.sleep(1);
+        Assert.assertTrue(board.isDisplayed());
     }
 
     public void clickAnyBoard() {
@@ -139,53 +142,49 @@ public class DeckModulePage extends BasePage {
     }
 
 
-    public void checkCreatedListName(String listName) {
-        List<WebElement> createdlists = Driver.getDriver().findElements(By.xpath("//h3[@class='stack__title has-tooltip']"));
-        int count = 0;
-        for (WebElement eachcreatedlist : createdlists) {
-            if (eachcreatedlist.getText().equals(listName)) {
-                count++;
-            }
-        }
-        Assert.assertTrue(count > 0);
+    public void checkCreatedListName() {
+
+        WebElement createdList = Driver.getDriver().findElement(By.xpath("//h3[contains(text(),'" + newListName + "')]"));
+        Assert.assertTrue(createdList.isDisplayed());
     }
 
 
-    public void clickAnyAddButtonOnTheCurrentBoard() {
+    public void clickAnyAddCardButtonOnTheCurrentBoard() {
+        if (!addCardButtons.isDisplayed()){
+            deckModule_stepDefs.user_clicks_add_list_button_top_right_of_the_page();
+            deckModule_stepDefs.user_enters_any_list_name_and_presses_enter_key();
+        }
         Faker faker = new Faker();
         List<WebElement> addIcons = Driver.getDriver().findElements(By.xpath("//div[@class='board']//button[@icon]"));
-        this.indexNumberOfListOfCurrentBoard = faker.number().numberBetween(0, addIcons.size() - 1);
+        indexNumberOfListOfCurrentBoard = faker.number().numberBetween(0, addIcons.size() - 1);
         addIcons.get(indexNumberOfListOfCurrentBoard).click();
     }
 
-    public WebElement findCardAddedList() {
-        List<WebElement> allLists = Driver.getDriver().findElements(By.xpath("//div[@class='stack']"));
-        return allLists.get(indexNumberOfListOfCurrentBoard);
+    public void  checkCreatedCard() {
+        WebElement createdCard = Driver.getDriver().findElement(By.xpath("//span[.='" + newCardName + "']"));
+        Assert.assertTrue(createdCard.isDisplayed());
     }
 
-    public String getAddedCardText() {
-        List<WebElement> cards = Driver.getDriver().findElements(By.xpath("(//div[@class='stack'])[" + indexNumberOfListOfCurrentBoard + "]//div//h3//span"));
-        return cards.get(cards.size() - 1).getText();
-    }
+
 
     public void clickAnyThreeDotsOnCards() {
         Faker faker = new Faker();
+        if (!threeDotsOnCurrentBoard.isDisplayed()){
+            deckModule_stepDefs.user_clicks_add_list_button_top_right_of_the_page();
+            deckModule_stepDefs.user_enters_any_list_name_and_presses_enter_key();
+            deckModule_stepDefs.user_clicks_add_card_button_of_any_created_list();
+            deckModule_stepDefs.user_enters_new_card_name_and_presses_enter();
+            clickAnyThreeDotsOnCards();
+        }
+
+
         List<WebElement> threeDotsList = Driver.getDriver().findElements(By.xpath("//div[@class='smooth-dnd-container vertical']//div//button[@aria-label='Actions']"));
         anyThreeDotsIndexNumber = faker.number().numberBetween(0, threeDotsList.size() - 1);
-        BrowserUtils.sleep(2);
         threeDotsList.get(anyThreeDotsIndexNumber).click();
-        if (Driver.getDriver().findElement(By.xpath("(//div[@tabindex='0']//span[@class='action-button__text'])[1]")).getText().equals("Assign to me")) {
-            return;
-        } else {
-            Driver.getDriver().navigate().refresh();
-            clickAnyThreeDotsOnCards();
-            if (!Driver.getDriver().findElement(By.xpath("(//div[@tabindex='0']//span[@class='action-button__text'])[1]")).getText().equals("Assign to me")) {
-                DeckModule_StepDefs deckModule_stepDefs = new DeckModule_StepDefs();
-                deckModule_stepDefs.user_clicks_add_list_button_top_right_of_the_page();
-                deckModule_stepDefs.user_enters_any_list_name_and_presses_enter_key();
-                clickAnyThreeDotsOnCards();
-            }
+        if (!assignToMe.isDisplayed()){
+
         }
+
     }
 
 
