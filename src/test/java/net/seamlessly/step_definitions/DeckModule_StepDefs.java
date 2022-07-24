@@ -3,12 +3,14 @@ package net.seamlessly.step_definitions;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import net.seamlessly.pages.DeckModulePage;
 import net.seamlessly.utilities.BrowserUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -32,8 +34,7 @@ public class DeckModule_StepDefs {
 
     @When("User enters any board name in input box")
     public void user_enters_any_board_name_in_input_box() {
-        deckModulePage.setNewBoardName();
-        deckModulePage.boardNameInputBox.sendKeys(deckModulePage.getNewBoardName());
+        deckModulePage.boardNameInputBox.sendKeys(deckModulePage.newBoardName);
     }
     @When("User clicks input confirm button")
     public void user_clicks_input_confirm_button() {
@@ -46,9 +47,11 @@ public class DeckModule_StepDefs {
     }
 
 
-    @When("User clicks any created board from the opened menu")
-    public void user_clicks_any_created_board_from_the_opened_menu() {
-        deckModulePage.clickAnyBoard();
+    @When("User clicks created board from the opened menu")
+    public void user_clicks_created_board_from_the_opened_menu() {
+        deckModulePage.clickAnyCreatedBoard();
+        BrowserUtils.sleep(1);
+
     }
 
     @When("User clicks + add list button top right of the page")
@@ -60,8 +63,7 @@ public class DeckModule_StepDefs {
 
     @When("User enters any list name and presses enter key")
     public void user_enters_any_list_name_and_presses_enter_key() {
-        deckModulePage.setNewListName();
-        deckModulePage.enterListNameInputBox.sendKeys(deckModulePage.getNewListName() + Keys.ENTER);
+        deckModulePage.enterListNameInputBox.sendKeys(deckModulePage.newListName + Keys.ENTER);
         BrowserUtils.sleep(1);
     }
 
@@ -76,9 +78,8 @@ public class DeckModule_StepDefs {
     }
     @When("User enters new card name and presses enter")
     public void user_enters_new_card_name_and_presses_enter() {
-        deckModulePage.setNewCardName();
-        BrowserUtils.sleep(1);
-        deckModulePage.cardNameInput.sendKeys(deckModulePage.getNewCardName() + Keys.ENTER);
+
+        deckModulePage.cardNameInput.sendKeys(deckModulePage.newCardName + Keys.ENTER);
     }
     @Then("User can see new card appears on the related list")
     public void user_can_see_new_card_appears_on_the_related_list() {
@@ -91,15 +92,29 @@ public class DeckModule_StepDefs {
     }
     @When("User clicks the assign to me option from opened menu")
     public void user_clicks_the_assign_to_me_option_from_opened_menu() {
-        deckModulePage.setCountOfAvatarsOnCards();
         deckModulePage.assignToMe.click();
-        BrowserUtils.sleep(1);
-        deckModulePage.setAfterAssignCountofAvatarsOnCards();
 
     }
     @Then("User profile icon should be displayed on card")
     public void user_profile_icon_should_be_displayed_on_card() {
-        Assert.assertTrue(deckModulePage.getAfterAssignCountofAvatarsOnCards()>deckModulePage.getCountOfAvatarsOnCards());
+        Assert.assertTrue(deckModulePage.assignedAvatar.isDisplayed());
+
+    }
+
+    @When("User clicks move card")
+    public void user_clicks_move_card() {
+        deckModulePage.moveCardOnDropdown.click();
+    }
+    @When("User selects board and list and clicks move card button")
+    public void user_selects_board_and_list_and_clicks_move_card_button() {
+        deckModulePage.board2ToSelect.click();
+    }
+    @When("User clicks Board2 board")
+    public void user_clicks_board2_board() {
+
+    }
+    @Then("The card should be displayed under the selected list")
+    public void the_card_should_be_displayed_under_the_selected_list() {
 
     }
 }
