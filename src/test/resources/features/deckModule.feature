@@ -21,7 +21,7 @@ Feature: Deck Module
   Scenario: TC002
     When User clicks on deck module
     And User clicks to navigation toggle top-left of the page
-    And User clicks any created board from the opened menu
+    And User clicks created board from the opened menu
     And User clicks + add list button top right of the page
     And User enters any list name and presses enter key
     Then User can see newly created list appears under the related board;
@@ -30,7 +30,7 @@ Feature: Deck Module
   Scenario: TC003
     When User clicks on deck module
     And User clicks to navigation toggle top-left of the page
-    And User clicks any created board from the opened menu
+    And User clicks created board from the opened menu
     And User clicks + add card button of any created list
     And User enters new card name and presses enter
     Then User can see new card appears on the related list
@@ -39,10 +39,23 @@ Feature: Deck Module
   Scenario: TC004
     When User clicks on deck module
     And User clicks to navigation toggle top-left of the page
-    And User clicks any created board from the opened menu
+    And User clicks created board from the opened menu
     And User clicks any three dots button on any created card
     And User clicks the assign to me option from opened menu
     Then User profile icon should be displayed on card
+
+    @TC005
+    Scenario: TC005
+      When User clicks on deck module
+      And User clicks to navigation toggle top-left of the page
+      And User clicks created board from the opened menu
+      And User clicks any three dots button on any created card
+      And User clicks move card
+      And User selects board and list and clicks move card button
+      And User clicks Board2 board
+      Then The card should be displayed under the selected list
+
+
 
 
 
