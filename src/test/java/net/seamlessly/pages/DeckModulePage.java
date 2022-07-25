@@ -173,7 +173,7 @@ public class DeckModulePage extends BasePage {
     }
 
     public void clickAnyAddCardButtonOnTheCurrentBoard() {
-        addCardButton.get(faker.number().numberBetween(1,addCardButton.size())).click();
+        addCardButton.get(faker.number().numberBetween(0,addCardButton.size())).click();
     }
 
     private String cardName;
@@ -200,7 +200,7 @@ public class DeckModulePage extends BasePage {
         if (assignToMeText.getText().equals("Assign to me")){
             assignToMe.click();
         }else {
-            
+
         }
     }
 
