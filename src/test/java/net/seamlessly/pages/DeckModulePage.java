@@ -18,9 +18,9 @@ import java.util.List;
 
 public class DeckModulePage extends BasePage {
 
-    public final String newListName="List1";
+
     public final String list_2_Name ="List2";
-    public final String newCardName = "Card1";
+
 
     public DeckModulePage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -46,19 +46,22 @@ public class DeckModulePage extends BasePage {
     public WebElement enterListNameInputBox;
 
     @FindBy(xpath = "//div[@class='stack']//button[@icon='icon-add']")
-    public WebElement addCardButton;
+    public List<WebElement> addCardButton;
     @FindBy(xpath = "//input[@id='new-stack-input-main']")
     public WebElement cardNameInput;
 
     @FindBy(xpath = "(//div[@class='open']//li//button)[1]")
     public WebElement assignToMe;
 
+    @FindBy(xpath = "(//div[@class='open']//li//button)[1]//span[2]")
+    public WebElement assignToMeText;
+
     @FindBy(xpath = "//div[@class='avatar-list']//img")
     public WebElement assignedAvatar;
 
 
     @FindBy(xpath = "//div[@class='smooth-dnd-container vertical']//div//button[@aria-label='Actions']")
-    public WebElement threeDotsOnCurrentBoard;
+    public List<WebElement> threeDotsOnCards;
 
     @FindBy(xpath = "(//div[@class='open']//li)[2]//button")
     public WebElement moveCardOnDropdown;
@@ -89,24 +92,13 @@ public class DeckModulePage extends BasePage {
     }
 
 
-    public void checkCreatedListName() {
 
-        WebElement createdList = Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + getBoardName() + "')]"));
-        Assert.assertTrue(createdList.isDisplayed());
-    }
 
-    public void clickAnyAddCardButtonOnTheCurrentBoard() {
-        addCardButton.click();
-    }
 
-    public void  checkCreatedCard() {
-        WebElement createdCard = Driver.getDriver().findElement(By.xpath("//span[.='" + newCardName + "']"));
-        Assert.assertTrue(createdCard.isDisplayed());
-    }
 
-    public void clickAnyThreeDotsOnCards() {
-        threeDotsOnCurrentBoard.click();
-    }
+
+
+
 
     public void deleteBoards(){
 
@@ -157,20 +149,59 @@ public class DeckModulePage extends BasePage {
 
     public void clickAnyBoardNameFromCreatedBoards(){
 
-        int indexOfBoard = 0;
-        for (int i = 0; i < createdBoardsNamesFromSpan.size(); i++) {
-
-            if (createdBoardsNamesFromSpan.get(i).getAttribute("title").equals(getAnyNameFromCreatedBoards())){
-                indexOfBoard = i+1;
-            }
-        }
+        int indexOfBoard = faker.number().numberBetween(1,createdBoardsNamesFromSpan.size());
 
         Driver.getDriver().findElement(By.xpath("(//ul[@class='app-navigation-entry__children']//a)[" + indexOfBoard + "]")).click();
 
 
     }
 
+    private String listName;
 
+    public String getListName() {
+        return listName;
+    }
 
+    public void setListName() {
+        this.listName = "List" + faker.number().randomNumber();
+    }
+
+    public void checkCreatedListName() {
+
+        WebElement createdList = Driver.getDriver().findElement(By.xpath("//h3[contains(text(),'" + getListName() + "')]"));
+        Assert.assertTrue(createdList.isDisplayed());
+    }
+
+    public void clickAnyAddCardButtonOnTheCurrentBoard() {
+        addCardButton.get(faker.number().numberBetween(1,addCardButton.size())).click();
+    }
+
+    private String cardName;
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName() {
+        this.cardName = "Card" + faker.number().randomNumber();
+    }
+
+    public void  checkCreatedCard() {
+        WebElement createdCard = Driver.getDriver().findElement(By.xpath("//span[.='" + getCardName() + "']"));
+        Assert.assertTrue(createdCard.isDisplayed());
+    }
+
+    public void clickAnyThreeDotsOnCards() {
+
+        threeDotsOnCards.get(faker.number().numberBetween(1,threeDotsOnCards.size())).click();
+    }
+
+    public void clickAssignToMe(){
+        if (assignToMeText.getText().equals("Assign to me")){
+            assignToMe.click();
+        }else {
+            
+        }
+    }
 
 }

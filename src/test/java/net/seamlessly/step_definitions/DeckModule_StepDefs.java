@@ -66,7 +66,8 @@ public class DeckModule_StepDefs {
 
     @When("User enters any list name and presses enter key")
     public void user_enters_any_list_name_and_presses_enter_key() {
-        deckModulePage.enterListNameInputBox.sendKeys(deckModulePage.newListName + Keys.ENTER);
+        deckModulePage.setListName();
+        deckModulePage.enterListNameInputBox.sendKeys(deckModulePage.getListName() + Keys.ENTER);
         BrowserUtils.sleep(1);
     }
 
@@ -81,8 +82,8 @@ public class DeckModule_StepDefs {
     }
     @When("User enters new card name and presses enter")
     public void user_enters_new_card_name_and_presses_enter() {
-
-        deckModulePage.cardNameInput.sendKeys(deckModulePage.newCardName + Keys.ENTER);
+        deckModulePage.setCardName();
+        deckModulePage.cardNameInput.sendKeys(deckModulePage.getCardName() + Keys.ENTER);
     }
     @Then("User can see new card appears on the related list")
     public void user_can_see_new_card_appears_on_the_related_list() {
