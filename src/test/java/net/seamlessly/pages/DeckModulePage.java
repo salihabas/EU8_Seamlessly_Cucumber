@@ -6,6 +6,7 @@ import net.seamlessly.step_definitions.DeckModule_StepDefs;
 import net.seamlessly.utilities.BrowserUtils;
 import net.seamlessly.utilities.Driver;
 import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -16,8 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeckModulePage extends BasePage {
-    public final String newBoardName ="Board1";
-    public final String board_2_Name = "Board2";
 
     public final String newListName="List1";
     public final String list_2_Name ="List2";
@@ -77,7 +76,7 @@ public class DeckModulePage extends BasePage {
 
 
     public void checkcreatedBoard() {
-        WebElement board = Driver.getDriver().findElement(By.xpath("//span[@title='" + newBoardName + "']") );
+        WebElement board = Driver.getDriver().findElement(By.xpath("//span[@title='" + getBoardName() + "']") );
         BrowserUtils.sleep(1);
         Assert.assertTrue(board.isDisplayed());
     }
@@ -85,14 +84,14 @@ public class DeckModulePage extends BasePage {
 
 
     public void clickAnyCreatedBoard() {
-        WebElement createdBoard = Driver.getDriver().findElement(By.xpath("//span[@title='" + newBoardName + "']/.."));
+        WebElement createdBoard = Driver.getDriver().findElement(By.xpath("//span[@title='" + getAnyNameFromCreatedBoards() + "']/.."));
         createdBoard.click();
     }
 
 
     public void checkCreatedListName() {
 
-        WebElement createdList = Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + newBoardName + "')]"));
+        WebElement createdList = Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + getBoardName() + "')]"));
         Assert.assertTrue(createdList.isDisplayed());
     }
 
@@ -120,6 +119,58 @@ public class DeckModulePage extends BasePage {
         }
 
     }
+
+
+    Faker faker = new Faker();
+    private String boardName;
+
+    //take the name with title attribute
+    @FindBy(xpath = "//ul[@class='app-navigation-entry__children']//span[@class='app-navigation-entry__title']")
+    public List<WebElement> createdBoardsNamesFromSpan;
+
+    public String getBoardName() {
+        return boardName;
+    }
+
+    public void setBoardName() {
+
+        this.boardName = "Board" + faker.number().randomNumber();
+    }
+
+    public String createNewBoardName(){
+        setBoardName();
+        for (WebElement eachCreatedBoard : createdBoardsNamesFromSpan) {
+            if (eachCreatedBoard.getAttribute("title").equals(getBoardName())){
+                setBoardName();
+            }
+        }
+
+        return getBoardName();
+    }
+
+    public String getAnyNameFromCreatedBoards(){
+        int randomBoardIndex = faker.number().numberBetween(0,createdBoardsNamesFromSpan.size()-1);
+        return createdBoardsNamesFromSpan.get(randomBoardIndex).getAttribute("title");
+    }
+
+
+
+    public void clickAnyBoardNameFromCreatedBoards(){
+
+        int indexOfBoard = 0;
+        for (int i = 0; i < createdBoardsNamesFromSpan.size(); i++) {
+
+            if (createdBoardsNamesFromSpan.get(i).getAttribute("title").equals(getAnyNameFromCreatedBoards())){
+                indexOfBoard = i+1;
+            }
+        }
+
+        Driver.getDriver().findElement(By.xpath("(//ul[@class='app-navigation-entry__children']//a)[" + indexOfBoard + "]")).click();
+
+
+    }
+
+
 
 
 }

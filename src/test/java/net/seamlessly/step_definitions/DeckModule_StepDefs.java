@@ -22,6 +22,7 @@ public class DeckModule_StepDefs {
     @When("User clicks on deck module")
     public void user_clicks_on_deck_module() {
         deckModulePage.getModuleElement("Deck").click();
+        BrowserUtils.sleep(1);
     }
     @When("User clicks to navigation toggle top-left of the page")
     public void user_clicks_to_navigation_toggle_top_left_of_the_page() {
@@ -34,7 +35,8 @@ public class DeckModule_StepDefs {
 
     @When("User enters any board name in input box")
     public void user_enters_any_board_name_in_input_box() {
-        deckModulePage.boardNameInputBox.sendKeys(deckModulePage.newBoardName);
+        deckModulePage.createNewBoardName();
+        deckModulePage.boardNameInputBox.sendKeys(deckModulePage.getBoardName());
     }
     @When("User clicks input confirm button")
     public void user_clicks_input_confirm_button() {
@@ -49,8 +51,9 @@ public class DeckModule_StepDefs {
 
     @When("User clicks created board from the opened menu")
     public void user_clicks_created_board_from_the_opened_menu() {
-        deckModulePage.clickAnyCreatedBoard();
         BrowserUtils.sleep(1);
+        deckModulePage.clickAnyBoardNameFromCreatedBoards();
+
 
     }
 
