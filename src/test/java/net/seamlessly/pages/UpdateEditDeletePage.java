@@ -22,9 +22,26 @@ public class UpdateEditDeletePage extends BasePage{
     public WebElement uploadedFileLocator(){
         String fileUploadPath = ConfigurationReader.getProperty("fileUploadPath");
         String fileName = fileUploadPath.substring(fileUploadPath.lastIndexOf("/")+1);
-        System.out.println("fileName = " + fileName);
         return Driver.getDriver().findElement(By.xpath("//tr[@data-file='" + fileName + "']"));
     }
+
+    @FindBy(xpath = "//a[@data-templatename='New folder']")
+    public WebElement newFolderSelection;
+
+    @FindBy(xpath = "//input[@id='view11-input-folder']")
+    public WebElement enterFileNameBox;
+
+    @FindBy(xpath = "//input[@class='icon-confirm']")
+    public WebElement rightArrwButton;
+
+    public WebElement newFolderLocator(){
+        String newFolderName = ConfigurationReader.getProperty("newFolderName");
+        return Driver.getDriver().findElement(By.xpath("//tr[@data-file='" + newFolderName + "']"));
+    }
+
+
+
+
 
 
 }

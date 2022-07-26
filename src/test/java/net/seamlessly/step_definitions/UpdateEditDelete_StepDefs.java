@@ -1,5 +1,6 @@
 package net.seamlessly.step_definitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.UpdateEditDeletePage;
@@ -25,7 +26,6 @@ public class UpdateEditDelete_StepDefs {
 
     @When("user clicks upload file selection")
     public void user_clicks_upload_file_selection() {
-        System.out.println("ConfigurationReader.getProperty(\"fileUploadPath\") = " + ConfigurationReader.getProperty("fileUploadPath"));
         uedPage.uploadFileSelection.sendKeys(ConfigurationReader.getProperty("fileUploadPath"));
     }
 
@@ -36,4 +36,23 @@ public class UpdateEditDelete_StepDefs {
 
     }
 
+    @And("user clicks new folder selection")
+    public void userClicksNewFolderSelection() {
+        uedPage.newFolderSelection.click();
+    }
+
+    @And("user enters folder name")
+    public void userEntersFolderName() {
+        uedPage.enterFileNameBox.sendKeys(ConfigurationReader.getProperty("newFolderName"));
+    }
+
+    @And("user clicks rignt arrow")
+    public void userClicksRigntArrow() {
+        uedPage.rightArrwButton.click();
+    }
+
+    @Then("folder successfully created")
+    public void folderSuccessfullyCreated() {
+        Assert.assertTrue(uedPage.newFolderLocator().isDisplayed());
+    }
 }

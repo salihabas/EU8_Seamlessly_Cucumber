@@ -13,17 +13,26 @@ Feature: Update Edit Delete Functionality
 
   Background: Pre_condition User is on dashboard page with valid credential
     Given user is on the login page
-    And user enters "Employee12" as a username
+    And user enters "Employee10" as a username
     And user enters "Employee123" as a password
     And user clicks login button
     And user can logged in
 
-    @wip
+    @SEAMLES-2023
     Scenario:
       When user clicks files module
       And user clicks plus upload link
       And user clicks upload file selection
       Then file successfully uploaded
+
+      @only
+      Scenario:
+        When user clicks files module
+        And user clicks plus upload link
+        And user clicks new folder selection
+        And user enters folder name
+        And user clicks rignt arrow
+        Then folder successfully created
 
 
 
