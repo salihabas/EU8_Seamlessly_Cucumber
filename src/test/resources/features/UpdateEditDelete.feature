@@ -18,21 +18,43 @@ Feature: Update Edit Delete Functionality
     And user clicks login button
     And user can logged in
 
-    @SEAMLES-2023
-    Scenario:
-      When user clicks files module
-      And user clicks plus upload link
-      And user clicks upload file selection
-      Then file successfully uploaded
+  @SEAMLES-2023
+  Scenario:Verify that User can upload a file
+    When user clicks files module
+    And user clicks plus upload link
+    And user clicks upload file selection
+    Then file successfully uploaded
 
-      @only
-      Scenario:
-        When user clicks files module
-        And user clicks plus upload link
-        And user clicks new folder selection
-        And user enters folder name
-        And user clicks rignt arrow
-        Then folder successfully created
+  @SEAMLES-2025
+  Scenario: Verify that User can create a new folder
+    When user clicks files module
+    And user clicks plus upload link
+    And user clicks new folder selection
+    And user enters MainFolderName
+    And user clicks right arrow
+    Then folder successfully created
+
+  @only
+  Scenario: User can move or copy any selected item to any folder
+    When user clicks files module
+    And user clicks plus upload link
+    And user clicks new folder selection
+    And user enters MainFolderName
+    And user clicks right arrow
+    And user clicks home button
+    And user clicks plus upload link
+    And user clicks new folder selection
+    And user enters MovingFolderName
+    And user clicks right arrow
+    And user clicks second three dot icon
+    And user selects moveOrCopy selection
+    And user clicks little home button
+    And user chooses MainFolderName target in the list
+    And user clicks MoveToMainFolder button
+    And user clicks Main folder
+    Then user can see MovingFolder
+
+
 
 
 
