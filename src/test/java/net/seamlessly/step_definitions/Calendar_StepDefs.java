@@ -23,22 +23,42 @@ public class Calendar_StepDefs {
         loginPage.password.sendKeys("Employee123");
         loginPage.loginButton.click();
     }
+
     @When("User click on the calendar module")
     public void user_click_on_the_calendar_module() {
         BrowserUtils.waitForVisibility(calendarPage.getModuleElement("Calendar"),10);
         calendarPage.getModuleElement("Calendar").click();
     }
+
     @When("User click on the calendar view dropdown menu")
     public void user_click_on_the_calendar_view_dropdown_menu() {
         calendarPage.dropdownMenu.click();
     }
+
     @When("User click on {string} option")
-    public void user_click_on_option(String day) {
+    public void user_click_on_option(String time) {
+        if (time.equalsIgnoreCase("day")){
             calendarPage.dayButton.click();
+        }else if (time.equalsIgnoreCase("week")){
+            calendarPage.weekButton.click();
+        }else if (time.equalsIgnoreCase("month")){
+            calendarPage.monthButton.click();
+        }
     }
+
     @Then("User should see daily calendar view")
     public void user_should_see_daily_calendar_view() {
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("timeGridDay") );
+    }
+
+    @Then("User should see weekly calendar view")
+    public void user_should_see_weekly_calendar_view() {
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("timeGridWeek") );
+    }
+
+    @Then("User should see monthly calendar view")
+    public void user_should_see_monthly_calendar_view() {
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("dayGridMonth") );
     }
 
 }

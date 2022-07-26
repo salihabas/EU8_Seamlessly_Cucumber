@@ -13,4 +13,10 @@ public class CalendarPage extends BasePage{
     @FindBy(xpath = "(//span[@class='action-button__text'])[9]")
     public WebElement dayButton;
 
+    @FindBy(xpath = "(//span[@class='action-button__text'])[10]")
+    public WebElement weekButton;
+
+    @FindBy(xpath = "(//span[@class='action-button__text'])[11]")
+    public WebElement monthButton;
+
 }

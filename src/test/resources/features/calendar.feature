@@ -12,9 +12,24 @@ Feature: Calendar function
 
   Background:
     Given User is on the home page
+
   @calendar
-  Scenario:
+  Scenario:  User can display daily calendar view
     When User click on the calendar module
     And  User click on the calendar view dropdown menu
     And  User click on "Day" option
     Then User should see daily calendar view
+
+  @calendar
+  Scenario:  User can display weekly calendar view
+    When User click on the calendar module
+    And  User click on the calendar view dropdown menu
+    And  User click on "Week" option
+    Then User should see weekly calendar view
+
+  @calendar
+  Scenario:  User can display monthly calendar view
+    When User click on the calendar module
+    And  User click on the calendar view dropdown menu
+    And  User click on "Month" option
+    Then User should see monthly calendar view
