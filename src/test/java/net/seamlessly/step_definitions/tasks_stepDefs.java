@@ -120,14 +120,23 @@ public class tasks_stepDefs extends BasePage {
 
     @Given("user clicks on the star icon on the right side of task line")
     public void user_clicks_on_the_star_icon_on_the_right_side_of_task_line(List<String> taskNames) {
-
+        BrowserUtils.waitForVisibility(tasksPage.getList("Current"),10);
+        tasksPage.getList("Current").click();
         for (String taskName : taskNames) {
             tasksPage.checkTheTaskAsImportant(taskName);
         }
 
     }
     @Then("the task is added to list of important tasks")
-    public void the_task_is_added_to_list_of_important_tasks() {
+    public void the_task_is_added_to_list_of_important_tasks(List<String> taskNames) {
+
+        tasksPage.getList("Important").click();
+        for (String taskName : taskNames) {
+
+            Assert.assertTrue(tasksPage.getTask(taskName).isDisplayed());
+
+        }
+
 
     }
 

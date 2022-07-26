@@ -1,3 +1,5 @@
+@wip
+
 Feature: Tasks feature
   User Story :  As a user, I should be able to create a new task list or a single task
   and add any task to completed and importants tasks list.
@@ -24,27 +26,27 @@ Feature: Tasks feature
 
   Scenario: AC2 user can create a new task
     Given user chose "School" tasks group from the tasks list
-    And user enters task name as "Homeworks" and clicks enter
-    Then "Homeworks" task is created under "School" tasks group
+    And user enters task name as "Homework" and clicks enter
+    Then "Homework" task is created under "School" tasks group
+
 
   Scenario: AC3 user can add any task to the list of completed tasks by clicking on the checkbox near the task name
     Given Tasks are created under "School" tasks group
-      | Homework   |
-      | Assignment |
-      | Recording  |
-      | Flipgripd  |
+  | Homework   |
+  | Assignment |
+  | Recording  |
+  | Flipgrid  |
     And user clicks checkbox near any completed task name
-      | Recording |
+  | Recording |
     Then chosen task is added to the list of completed tasks
 
-
-  @wip
   Scenario: AC4 User can add any task to the list of important tasks
   by clicking on the star icon on the right side of task line
     Given user has uncompleted tasks remaining
     And user clicks on the star icon on the right side of task line
-    |Recording|
+    |Flipgrid|
     Then the task is added to list of important tasks
+    |Flipgrid|
 
 
   Scenario: AC5 user can see the number of all uncompleted tasks next to the Current tab

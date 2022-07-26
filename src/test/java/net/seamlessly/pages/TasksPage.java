@@ -53,7 +53,7 @@ public class TasksPage extends BasePage {
      * @return returns web element of the given task
      */
     public WebElement getTask(String taskName) {
-        return Driver.getDriver().findElement(By.xpath("//div[@class='grouped-tasks']//span[.='" + taskName + "']"));
+        return Driver.getDriver().findElement(By.xpath("//div[contains(@class,'grouped-tasks')]//span[.='" + taskName + "']"));
     }
 
     public WebElement getCheckBox(String taskName) {
@@ -87,8 +87,10 @@ public class TasksPage extends BasePage {
     }
 
     public void checkTheTaskAsImportant(String taskName){
-        Driver.getDriver().findElement(By.xpath("(//span[.='"+taskName+"']/../../following-sibling::div//span[@class='material-design-icon star-icon'])[1]"));
+        //Driver.getDriver().findElement(By.xpath("(//span[.='"+taskName+"']/../../following-sibling::div//span[@class='material-design-icon star-icon'])[1]")).click();
+        Driver.getDriver().findElement(By.xpath("//span[.='"+taskName+"']/../../following-sibling::div/button")).click();
     }
+    //span[.='Assignment']/../../following-sibling::div/button
 
     public void completeTheTask(String taskName){
         Driver.getDriver().findElement(By.xpath("//span[.='"+taskName+"']/../../preceding-sibling::div//span")).click();
