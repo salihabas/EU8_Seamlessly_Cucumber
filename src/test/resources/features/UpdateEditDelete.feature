@@ -1,7 +1,7 @@
 Feature: Update Edit Delete Functionality
   User Story :
 
-  As a user, I should be able to upload a file, move or delete any selected file under the Files module.
+  As a user, I should be able to upload a file, move or delete any selected file under the Files module
 
   Acceptance Criteria:
 
