@@ -14,7 +14,7 @@ Feature: Logout function
     And user clicks login button
     And user can logged in
 
-  @SEAMLES-1932 @wip
+  @SEAMLES-1932
   Scenario: US002_AC1_TC1 User can log out and ends up in login page
     When user clicks avatar image
     And user clicks Log out link
