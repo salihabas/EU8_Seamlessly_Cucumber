@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import java.util.*;
 
 public class CalendarPage extends BasePage {
 
@@ -63,15 +63,15 @@ public class CalendarPage extends BasePage {
     }
 
     // return as a web element for last time . You should give date like "year-month-day"
-    public String getTime(String date) {
-        List<WebElement> times = Driver.getDriver().findElements(By.xpath("//td[@data-date='" + date + "']//div[@class='fc-daygrid-event-harness']//div[@class='fc-event-time']"));
-        return times.get(times.size()-1).getText();
+    public String getTime(String date,String time) {
+     String times =  Driver.getDriver().findElement(By.xpath("//td[@data-date='"+date+"']//div[text()='"+time+"']")).getText();
+      return times;
     }
 
     // return as a web element for last title . You should give date like "year-month-day"
-    public String getTitle(String date) {
-        List<WebElement> titles = Driver.getDriver().findElements(By.xpath("//td[@data-date='" + date + "']//div[@class='fc-daygrid-event-harness']//div[@class='fc-event-title']"));
-        return titles.get(titles.size()-1).getText();
+    public String getTitle(String date, String eTitle ) {
+       String titles = Driver.getDriver().findElement(By.xpath("//td[@data-date='" + date + "']//div[text()='"+eTitle +"']")).getText();
+       return titles;
     }
 
 }

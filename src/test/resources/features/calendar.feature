@@ -10,25 +10,25 @@ Feature: Calendar function
   4- User can create a new event under the Calendar module and see it on the related day through the Monthly Calendar view
   5- User can delete any event through the Monthly Calendar view by clicking on the event and then using “more” option
 
-  Background: User loged in successfuly
+    Background: User login successfuly with valid credential
     Given User is on the home page
 
 
-  Scenario:  User can display daily calendar view
+    Scenario:  User can display daily calendar view
     When User click on the calendar module
     And  User click on the calendar view dropdown menu
     And  User click on "Day" option
     Then User should see daily calendar view
 
 
-  Scenario:  User can display weekly calendar view
+    Scenario:  User can display weekly calendar view
     When User click on the calendar module
     And  User click on the calendar view dropdown menu
     And  User click on "Week" option
     Then User should see weekly calendar view
 
 
-  Scenario:  User can display monthly calendar view
+    Scenario:  User can display monthly calendar view
     When User click on the calendar module
     And  User click on the calendar view dropdown menu
     And  User click on "Month" option
