@@ -71,7 +71,7 @@ public class CalendarPage extends BasePage {
     // return as a web element for last title . You should give date like "year-month-day"
     public String getTitle(String date) {
         List<WebElement> titles = Driver.getDriver().findElements(By.xpath("//td[@data-date='" + date + "']//div[@class='fc-daygrid-event-harness']//div[@class='fc-event-title']"));
-        return titles.get(0).getText();
+        return titles.get(titles.size()-1).getText();
     }
 
 }

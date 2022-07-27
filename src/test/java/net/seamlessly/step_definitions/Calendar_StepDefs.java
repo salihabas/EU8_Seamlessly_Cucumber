@@ -74,15 +74,16 @@ public class Calendar_StepDefs {
 
     @When("User  input new event in {string} placeholder")
     public void user_input_new_event_in_placeholder(String string) {
-         calendarPage.eventTitle.sendKeys("Alumni Meeting");
+         calendarPage.eventTitle.sendKeys("Group Meeting");
     }
 
     @When("User  select beginning time and date")
     public void user_select_beginning_time_and_date() {
         calendarPage.startTime.click();
-        calendarPage.getHour("7").click();
+        calendarPage.getHour("3").click();
         calendarPage.pm.click();
         calendarPage.pickDateButton.click();
+        calendarPage.getPickDate("2022-07-21").click();
         calendarPage.okButton.click();
     }
 
@@ -101,12 +102,14 @@ public class Calendar_StepDefs {
 
     @Then("User  should see new event on monthly calendar")
     public void user_should_see_new_event_on_monthly_calendar() {
-        String expectedTime = "7:00 PM";
-        String actualTime = calendarPage.getTime("2022-07-19");
+
+        BrowserUtils.waitFor(10);
+        String expectedTime = "3:00 PM";
+        String actualTime = calendarPage.getTime("2022-07-21");
         Assert.assertEquals(expectedTime,actualTime);
 
-        String expectedTitle = "Alumni Meeting";
-        String actualTitle = calendarPage.getTitle("2022-07-19");
+        String expectedTitle = "Group Meeting";
+        String actualTitle = calendarPage.getTitle("2022-07-21");
         Assert.assertEquals(expectedTitle,actualTitle);
 
 
