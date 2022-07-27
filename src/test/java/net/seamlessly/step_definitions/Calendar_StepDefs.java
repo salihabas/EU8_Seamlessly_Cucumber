@@ -61,4 +61,55 @@ public class Calendar_StepDefs {
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("dayGridMonth") );
     }
 
+    @When("User  select Monthly view calendar")
+    public void user_select_monthly_view_calendar() {
+        calendarPage.dropdownMenu.click();
+        calendarPage.monthButton.click();
+    }
+
+    @When("User  click on {string} button")
+    public void user_click_on_button(String string) {
+        calendarPage.newEventButton.click();
+    }
+
+    @When("User  input new event in {string} placeholder")
+    public void user_input_new_event_in_placeholder(String string) {
+         calendarPage.eventTitle.sendKeys("Alumni Meeting");
+    }
+
+    @When("User  select beginning time and date")
+    public void user_select_beginning_time_and_date() {
+        calendarPage.startTime.click();
+        calendarPage.getHour("7").click();
+        calendarPage.pm.click();
+        calendarPage.pickDateButton.click();
+        calendarPage.okButton.click();
+    }
+
+    @When("User  select ending time and date")
+    public void user_select_ending_time_and_date() {
+       // calendarPage.endTime.click();
+       // calendarPage.getHour("11").click();
+       // BrowserUtils.waitForClickablility(calendarPage.okButton,10);
+       // calendarPage.okButton.click();
+    }
+
+    @When("User  click on Save  button")
+    public void user_click_on_save_button() {
+       calendarPage.saveButton.click();
+    }
+
+    @Then("User  should see new event on monthly calendar")
+    public void user_should_see_new_event_on_monthly_calendar() {
+        String expectedTime = "7:00 PM";
+        String actualTime = calendarPage.getTime("2022-07-19");
+        Assert.assertEquals(expectedTime,actualTime);
+
+        String expectedTitle = "Alumni Meeting";
+        String actualTitle = calendarPage.getTitle("2022-07-19");
+        Assert.assertEquals(expectedTitle,actualTitle);
+
+
+    }
+
 }
