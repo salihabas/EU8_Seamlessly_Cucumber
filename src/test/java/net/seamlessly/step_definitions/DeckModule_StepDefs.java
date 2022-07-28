@@ -21,6 +21,7 @@ public class DeckModule_StepDefs {
 
     @When("User clicks on deck module")
     public void user_clicks_on_deck_module() {
+        BrowserUtils.sleep(1);
         deckModulePage.getModuleElement("Deck").click();
         BrowserUtils.sleep(1);
     }
@@ -96,7 +97,8 @@ public class DeckModule_StepDefs {
     }
     @When("User clicks the assign to me option from opened menu")
     public void user_clicks_the_assign_to_me_option_from_opened_menu() {
-        deckModulePage.assignToMe.click();
+        BrowserUtils.sleep(1);
+        deckModulePage.clickAssignToMe();
 
     }
     @Then("User profile icon should be displayed on card")
@@ -111,14 +113,16 @@ public class DeckModule_StepDefs {
     }
     @When("User selects board and list and clicks move card button")
     public void user_selects_board_and_list_and_clicks_move_card_button() {
-        deckModulePage.board2ToSelect.click();
-    }
-    @When("User clicks Board2 board")
-    public void user_clicks_board2_board() {
+        deckModulePage.selectBoardAndListToMove();
+        deckModulePage.moveCardButton.click();
 
+    }
+    @When("User clicks board that moved card recently")
+    public void user_clicks_board_that_moved_card_recently() {
+        deckModulePage.clickBoardMovedCard();
     }
     @Then("The card should be displayed under the selected list")
     public void the_card_should_be_displayed_under_the_selected_list() {
-
+        deckModulePage.checkMovedCard();
     }
 }

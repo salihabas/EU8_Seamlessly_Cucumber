@@ -52,7 +52,7 @@ Feature: Deck Module
       And User clicks any three dots button on any created card
       And User clicks move card
       And User selects board and list and clicks move card button
-      And User clicks Board2 board
+      And User clicks board that moved card recently
       Then The card should be displayed under the selected list
 
 
