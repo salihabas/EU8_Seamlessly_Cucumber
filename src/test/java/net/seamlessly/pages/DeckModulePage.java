@@ -183,7 +183,17 @@ public class DeckModulePage extends BasePage {
     }
 
     public void clickAnyAddCardButtonOnTheCurrentBoard() {
-        addCardButton.get(faker.number().numberBetween(0, addCardButton.size())).click();
+        try {
+            addCardButton.get(faker.number().numberBetween(0, addCardButton.size()-1)).click();
+            if (addCardButton.isEmpty()){
+                setOfcreateCardfromBatch();
+                clickAnyAddCardButtonOnTheCurrentBoard();
+            }
+        }catch (NoSuchElementException e){
+            setOfcreateCardfromBatch();
+            clickAnyAddCardButtonOnTheCurrentBoard();
+        }
+
     }
 
     private String cardName;
