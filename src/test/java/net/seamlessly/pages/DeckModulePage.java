@@ -73,14 +73,17 @@ public class DeckModulePage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='Select a board']")
     public WebElement selectBoardInputBox;
 
-    @FindBy(xpath = "//input[@placeholder='Select a list']")
-    public WebElement selectListInputBox;
+    @FindBy(xpath = "(//ul[@class='multiselect__content'])[2]//li[@class='multiselect__element']")
+    public List<WebElement> listLinksFromOtherBoard;
 
     @FindBy(xpath = "//div[@class='smooth-dnd-container horizontal']//div[@class='avatardiv popovermenu-wrapper has-tooltip']")
     public List<WebElement> avatarsOnCards;
 
     @FindBy(xpath = "//h3[@class='stack__title has-tooltip']") //gettext
     public List<WebElement> listNamesOnCurrentBoard;
+
+    @FindBy(xpath = "//input[@placeholder='Select a list']")
+    public WebElement selectListInput;
 
     @FindBy(xpath = "//span[@class='action-button__icon icon-delete']/..")
     public WebElement deleteBoard;
@@ -210,6 +213,7 @@ public class DeckModulePage extends BasePage {
             }
             int randomNumber = faker.number().numberBetween(0,threeDotsOnCards.size()-1);
             threeDotsOnCards.get(randomNumber).click();
+            setAnyCardName(cardNames.get(randomNumber).getText());
         } catch (NoSuchElementException | IndexOutOfBoundsException e) {
             System.out.println("I create set for you...");
             setOfcreateCardfromBatch();
@@ -273,23 +277,41 @@ public class DeckModulePage extends BasePage {
         return listNamesOnCurrentBoard.get(faker.number().numberBetween(0, listNamesOnCurrentBoard.size() - 1)).getText();
     }
 
-    //String anyBoardName = getAnyNameFromCreatedBoards();
-    //String anyListName = getAnyListNameFromCurrentBoard();
+    private String anyBoardName ;
+    private String anyCardName;
 
-    /*public void selectBoardAndListToMove() {
 
-        selectBoardInputBox.sendKeys(anyBoardName);
+    public String getAnyBoardName() {
+        return anyBoardName;
+    }
+
+    public void setAnyBoardName() {
+        this.anyBoardName = getAnyNameFromCreatedBoards();
+    }
+
+    public String getAnyCardName() {
+        return anyCardName;
+    }
+
+    public void setAnyCardName(String anyCardName) {
+        this.anyCardName = anyCardName;
+    }
+
+    public void selectBoardAndListToMove() {
+        setAnyBoardName();
+        selectBoardInputBox.sendKeys(getAnyBoardName() + Keys.ENTER);
         BrowserUtils.sleep(1);
-        selectListInputBox.sendKeys(anyListName);
+        selectListInput.click();
+        listLinksFromOtherBoard.get(faker.number().numberBetween(0,listLinksFromOtherBoard.size()-1)).click();
 
-    }*/
+    }
 
-    /*public void clickBoardMovedCard() {
-        Driver.getDriver().findElement(By.xpath("//span[@title='" + anyBoardName + "']/..")).click();
-    }*/
+    public void clickBoardMovedCard() {
+        Driver.getDriver().findElement(By.xpath("//span[@title='" + getAnyBoardName() + "']/..")).click();
+    }
 
     public void checkMovedCard(){
-       // Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + anycardName + "')]")).isDisplayed());
+       Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + getAnyCardName() + "')]")).isDisplayed());
     }
 
     ////h3[contains(text(),'List313')]/../..//span[contains(text(),'Card3074297')]

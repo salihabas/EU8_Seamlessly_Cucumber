@@ -112,15 +112,16 @@ public class DeckModule_StepDefs {
     }
     @When("User selects board and list and clicks move card button")
     public void user_selects_board_and_list_and_clicks_move_card_button() {
-
+        deckModulePage.selectBoardAndListToMove();
+        deckModulePage.moveCardButton.click();
 
     }
     @When("User clicks board that moved card recently")
     public void user_clicks_board_that_moved_card_recently() {
-
+        deckModulePage.clickBoardMovedCard();
     }
     @Then("The card should be displayed under the selected list")
     public void the_card_should_be_displayed_under_the_selected_list() {
-
+        deckModulePage.checkMovedCard();
     }
 }
