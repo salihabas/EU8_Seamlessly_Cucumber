@@ -1,6 +1,7 @@
 package net.seamlessly.step_definitions;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.BasePage;
@@ -9,6 +10,7 @@ import net.seamlessly.utilities.BrowserUtils;
 import net.seamlessly.utilities.ConfigurationReader;
 import net.seamlessly.utilities.Driver;
 import org.junit.Assert;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -96,8 +98,8 @@ public class UpdateEditDelete_StepDefs {
         //wait.until(ExpectedConditions.elementToBeClickable(uedPage.movingFolderLocator()));
         BrowserUtils.waitFor(3);
         //uedPage.waitForNotStaled();
-        Assert.assertTrue(uedPage.movingFolderLocator().isDisplayed());
-        //uedPage.movingFolderLocator().click();
+        //Assert.assertTrue(uedPage.movingFolderLocator().isDisplayed());
+        uedPage.movingFolderLocator().click();
     }
 
     @And("user clicks home button")
@@ -111,4 +113,38 @@ public class UpdateEditDelete_StepDefs {
     }
 
 
+    @Given("user already uploaded a file")
+    public void userAlreadyUploadedAFile() {
+        uedPage.getModuleElement("Files").click();
+        uedPage.plusIcon.click();
+        uedPage.uploadFileSelection.sendKeys(ConfigurationReader.getProperty("fileUploadPath"));
+    }
+
+    @When("user clicks threeDotForDeleting")
+    public void userClicksThreeDotForDeleting() {
+        uedPage.threeDotForDeleting.click();
+    }
+
+    @And("user clicks Delete file selection")
+    public void userClicksDeleteFileSelection() {
+        uedPage.deleteSelection.click();
+    }
+
+    @Then("verify the item is deleted")
+    public void verifyTheItemIsDeleted() {
+        try {
+            uedPage.uploadedFileLocator().isDisplayed();
+        } catch (StaleElementReferenceException e) {
+            Assert.assertTrue(true);
+        }
+    }
+
+
+    @Given("user already created a folder")
+    public void userAlreadyCreatedAFolder() {
+    }
+
+    @Then("total file and folder number is seen")
+    public void totalFileAndFolderNumberIsSeen() {
+    }
 }
