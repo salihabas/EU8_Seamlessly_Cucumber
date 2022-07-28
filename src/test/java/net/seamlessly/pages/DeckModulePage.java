@@ -201,23 +201,15 @@ public class DeckModulePage extends BasePage {
     @FindBy(xpath = "//div[@class='card-upper']//span")
     public List<WebElement> cardNames;
 
-    private String anycardNamefromCurrent;
-
-    public String getAnycardNamefromCurrent() {
-        return anycardNamefromCurrent;
-    }
-
-    public void setAnycardNamefromCurrent() {
-        int indexNumber = faker.number().numberBetween(0, threeDotsOnCards.size()-1);
-        String anycardName = cardNames.get(indexNumber).getText();
-    }
-
 
 
     public void clickAnyThreeDotsOnCards() {
-        setAnycardNamefromCurrent();
         try {
-            threeDotsOnCards.get(indexNumber).click();
+            if (threeDotsOnCards.isEmpty()){
+                setOfcreateCardfromBatch();
+            }
+            int randomNumber = faker.number().numberBetween(0,threeDotsOnCards.size()-1);
+            threeDotsOnCards.get(randomNumber).click();
         } catch (NoSuchElementException | IndexOutOfBoundsException e) {
             System.out.println("I create set for you...");
             setOfcreateCardfromBatch();
@@ -281,23 +273,23 @@ public class DeckModulePage extends BasePage {
         return listNamesOnCurrentBoard.get(faker.number().numberBetween(0, listNamesOnCurrentBoard.size() - 1)).getText();
     }
 
-    String anyBoardName = getAnyNameFromCreatedBoards();
-    String anyListName = getAnyListNameFromCurrentBoard();
+    //String anyBoardName = getAnyNameFromCreatedBoards();
+    //String anyListName = getAnyListNameFromCurrentBoard();
 
-    public void selectBoardAndListToMove() {
+    /*public void selectBoardAndListToMove() {
 
         selectBoardInputBox.sendKeys(anyBoardName);
         BrowserUtils.sleep(1);
         selectListInputBox.sendKeys(anyListName);
 
-    }
+    }*/
 
-    public void clickBoardMovedCard() {
+    /*public void clickBoardMovedCard() {
         Driver.getDriver().findElement(By.xpath("//span[@title='" + anyBoardName + "']/..")).click();
-    }
+    }*/
 
     public void checkMovedCard(){
-        Assert.assertTrue(Driver.getDriver().findElement(By.xpath("h3[contains(text(),'" + anyListName + "')]/../..//span[contains(text(),'" + anycardName + "')]")).isDisplayed());
+       // Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + anycardName + "')]")).isDisplayed());
     }
 
     ////h3[contains(text(),'List313')]/../..//span[contains(text(),'Card3074297')]
