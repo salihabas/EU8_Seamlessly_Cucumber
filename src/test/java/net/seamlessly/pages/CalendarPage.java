@@ -60,36 +60,44 @@ public class CalendarPage extends BasePage {
     public WebElement deleteButton;
 
 
-
-
-    // return webelement as an hour from popup menü
+    /**
+     * return webelement as an hour from popup menü
+     * @param hour
+     */
     public WebElement getHour(String hour) {
         return Driver.getDriver().findElement(By.xpath("(//li[@data-index='" + hour + "'])[1]"));
     }
 
-    // return webelement as a date from popup menü
+    /**
+     * return webelement as a date from popup menü
+     * @param date
+     */
     public WebElement getPickDate(String date) {
         return Driver.getDriver().findElement(By.xpath("//td[@title='" + date + "']"));
     }
 
-    /*
-    public WebElement getDate(String date) {
-        return Driver.getDriver().findElement(By.xpath("//td[@data-date=" + date + "]"));
-    }*/
-
-    // return as a String for time . You should give date like "year-month-day"
-    public WebElement getEventTime(String date,String time) {
+    /**
+     * return webelement as a time from monthly calendar
+     * @param date,time
+     */
+     public WebElement getEventTime(String date,String time) {
      WebElement times =  Driver.getDriver().findElement(By.xpath("//td[@data-date='"+date+"']//div[text()='"+time+"']"));
       return times;
     }
 
-    // return as a String for title . You should give date like "year-month-day"
+    /**
+     * return webelement as a title from monthly calendar
+     * @param date,title
+     */
     public WebElement getEventTitle(String date, String title ) {
        WebElement titles = Driver.getDriver().findElement(By.xpath("//td[@data-date='" + date + "']//div[text()='"+title +"']"));
        return titles;
     }
 
-    // return webelement as a link of event
+    /**
+     * return webelement as a tink of event from monthly calendar
+     * @param date,title
+     */
     public WebElement getEventLink (String date, String title){
         WebElement link = Driver.getDriver().findElement(By.xpath("//td[@data-date='"+ date+ "']" +
                 "//a[@class='fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past']//div[text()='"+ title +"']"));
@@ -102,14 +110,11 @@ public class CalendarPage extends BasePage {
      */
     public void checkStaleElementTrue(WebElement staleElement){
         try{
-
             staleElement.getText();
-
+            Assert.assertTrue(false);
         }catch (StaleElementReferenceException e){
             System.out.println("event erased");
             Assert.assertTrue(true);
         }
-
     }
-
 }
