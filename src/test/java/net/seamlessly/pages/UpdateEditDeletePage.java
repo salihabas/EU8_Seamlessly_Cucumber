@@ -80,4 +80,6 @@ public class UpdateEditDeletePage extends BasePage {
     @FindBy(xpath = "//tr[@class='summary']")
     public WebElement folderFileSummary;
 
+    //Methdos here returns WebElements
+
     }
