@@ -34,7 +34,7 @@ Feature: Calendar function
     And  User click on "Month" option
     Then User should see monthly calendar view
 
-    @calendar
+
     Scenario: User  can create a new event  and see it on the calendar
     When User click on the calendar module
     And  User  select Monthly view calendar
