@@ -34,7 +34,7 @@ Feature: Calendar function
     And  User click on "Month" option
     Then User should see monthly calendar view
 
-
+    @calendar
     Scenario: User  can create a new event  and see it on the calendar
     When User click on the calendar module
     And  User  select Monthly view calendar
@@ -45,3 +45,11 @@ Feature: Calendar function
     And  User  click on Save  button
     Then User  should see new event on monthly calendar
 
+    @calendar
+    Scenario: User can delete any event through the Monthly Calendar
+    When User click on the calendar module
+    And  User click the event on the monthly calendar
+    And  User click More button
+    And  User click tree dot dropdown menu
+    And  User click delete button
+    Then User should see the event was erased

@@ -1,4 +1,5 @@
 package net.seamlessly.step_definitions;
+
 import java.util.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,6 +17,11 @@ public class Calendar_StepDefs {
 
     LoginPage loginPage = new LoginPage();
     CalendarPage calendarPage = new CalendarPage();
+    String time     = "7:00 PM";
+    String endTime  = "9:00 PM";
+    String date     = "2022-07-17";
+    String title    = "Alumni Meeting";
+    WebElement selectedEvent;
 
     @Given("User is on the home page")
     public void user_is_on_the_home_page() {
@@ -75,16 +81,16 @@ public class Calendar_StepDefs {
 
     @When("User  input new event in {string} placeholder")
     public void user_input_new_event_in_placeholder(String string) {
-         calendarPage.eventTitle.sendKeys("Meeting");
+         calendarPage.eventTitle.sendKeys(title);
     }
 
     @When("User  select beginning time and date")
     public void user_select_beginning_time_and_date() {
         calendarPage.startTime.click();
-        calendarPage.getHour("2").click();
+        calendarPage.getHour(time.substring(0,1)).click();
         calendarPage.pm.click();
         calendarPage.pickDateButton.click();
-        calendarPage.getPickDate("2022-07-18").click();
+        calendarPage.getPickDate(date).click();
         calendarPage.okButton.click();
     }
 
@@ -92,7 +98,7 @@ public class Calendar_StepDefs {
     public void user_select_ending_time_and_date() {
         calendarPage.endTime.click();
         BrowserUtils.waitFor(3);
-        calendarPage.getHour("8").click();
+        calendarPage.getHour(endTime.substring(0,1)).click();
         BrowserUtils.waitFor(3);
         calendarPage.okButton.click();
     }
@@ -105,15 +111,41 @@ public class Calendar_StepDefs {
     @Then("User  should see new event on monthly calendar")
     public void user_should_see_new_event_on_monthly_calendar() {
 
-        String eHour = "2:00 PM";
-        String actualHour = calendarPage.getTime("2022-07-18", eHour);
-        Assert.assertEquals(eHour,actualHour);
+        WebElement actualHour = calendarPage.getEventTime(date, time);
+        Assert.assertEquals(time,actualHour.getText());
 
-        String eTitle = "Meeting";
-        String actualTitle = calendarPage.getTitle("2022-07-18",eTitle);
-        Assert.assertEquals(eTitle,actualTitle);
-
-
+        WebElement actualTitle = calendarPage.getEventTitle(date,title);
+        Assert.assertEquals(title,actualTitle.getText());
     }
+
+    @When("User click the event on the monthly calendar")
+    public void user_click_the_event_on_the_monthly_calendar() {
+         selectedEvent = calendarPage.getEventLink(date,title);
+         selectedEvent.click();
+         BrowserUtils.waitFor(3);
+    }
+
+    @When("User click More button")
+    public void user_click_more_button() {
+         calendarPage.moreButton.click();
+    }
+
+    @When("User click tree dot dropdown menu")
+    public void user_click_tree_dot_dropdown_menu() {
+         calendarPage.treeDotDropdown.click();
+    }
+
+    @When("User click delete button")
+    public void user_click_delete_button() {
+         calendarPage.deleteButton.click();
+    }
+
+    @Then("User should see the event was erased")
+    public void user_should_see_the_event_was_erased() {
+
+          BrowserUtils.waitFor(3);
+          calendarPage.checkStaleElementTrue(selectedEvent);
+    }
+
 
 }
