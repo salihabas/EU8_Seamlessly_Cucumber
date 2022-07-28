@@ -61,6 +61,7 @@ Feature: Update Edit Delete Functionality
     And user clicks Delete file selection
     Then verify the item is deleted
 
+  @SEAMLES-2043
   Scenario: User can see the total number of files and folders under the files list table
     Given user already uploaded a file
     Given user already created a folder

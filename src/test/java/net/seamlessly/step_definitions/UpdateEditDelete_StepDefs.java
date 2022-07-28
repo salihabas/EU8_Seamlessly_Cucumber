@@ -142,9 +142,15 @@ public class UpdateEditDelete_StepDefs {
 
     @Given("user already created a folder")
     public void userAlreadyCreatedAFolder() {
+        uedPage.getModuleElement("Files").click();
+        uedPage.plusIcon.click();
+        uedPage.newFolderSelection.click();
+        uedPage.enterFileNameBox.sendKeys(ConfigurationReader.getProperty("MainFolderName"));
+        uedPage.rightArrwButton.click();
     }
 
     @Then("total file and folder number is seen")
     public void totalFileAndFolderNumberIsSeen() {
+       Assert.assertTrue(uedPage.folderFileSummary.isDisplayed());
     }
 }
