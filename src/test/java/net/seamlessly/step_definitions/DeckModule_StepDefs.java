@@ -71,7 +71,7 @@ public class DeckModule_StepDefs {
         BrowserUtils.sleep(1);
     }
 
-    @Then("User can see newly created list appears under the related board;")
+    @Then("User can see newly created list appears under the related board")
     public void user_can_see_newly_created_list_appears_under_the_related_board() {
         deckModulePage.checkCreatedListName();
     }

@@ -20,9 +20,6 @@ import java.util.List;
 public class DeckModulePage extends BasePage {
 
 
-    public final String list_2_Name = "List2";
-
-
     public DeckModulePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
@@ -91,6 +88,9 @@ public class DeckModulePage extends BasePage {
     @FindBy(xpath = "//button[@class='error primary']")
     public WebElement deleteBoardConfirm;
 
+    @FindBy(xpath = "//ul[@class='app-navigation-entry__children']//span[@class='app-navigation-entry__title']")
+    public List<WebElement> createdBoardsNamesFromSpan;
+
 
     public void checkcreatedBoard() {
         WebElement board = Driver.getDriver().findElement(By.xpath("//span[@title='" + getBoardName() + "']"));
@@ -105,13 +105,16 @@ public class DeckModulePage extends BasePage {
     }
 
 
-    public void deleteBoards() {
+    public void deleteAllBoards() {
 
         List<WebElement> boardsThreeDots = Driver.getDriver().findElements(By.xpath("//ul[@class='app-navigation-entry__children']//button[@aria-label='Actions']"));
         if (boardsThreeDots.size() != 0) {
             for (WebElement eachBoardsThreeDot : boardsThreeDots) {
                 eachBoardsThreeDot.click();
+                BrowserUtils.sleep(1);
                 deleteBoard.click();
+                BrowserUtils.sleep(1);
+                deleteBoardConfirm.click();
             }
         }
 
@@ -122,8 +125,6 @@ public class DeckModulePage extends BasePage {
     private String boardName;
 
     //take the name with title attribute
-    @FindBy(xpath = "//ul[@class='app-navigation-entry__children']//span[@class='app-navigation-entry__title']")
-    public List<WebElement> createdBoardsNamesFromSpan;
 
     public String getBoardName() {
         return boardName;
@@ -184,12 +185,12 @@ public class DeckModulePage extends BasePage {
 
     public void clickAnyAddCardButtonOnTheCurrentBoard() {
         try {
-            addCardButton.get(faker.number().numberBetween(0, addCardButton.size()-1)).click();
-            if (addCardButton.isEmpty()){
+            addCardButton.get(faker.number().numberBetween(0, addCardButton.size() - 1)).click();
+            if (addCardButton.isEmpty()) {
                 setOfcreateCardfromBatch();
                 clickAnyAddCardButtonOnTheCurrentBoard();
             }
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             setOfcreateCardfromBatch();
             clickAnyAddCardButtonOnTheCurrentBoard();
         }
@@ -215,13 +216,12 @@ public class DeckModulePage extends BasePage {
     public List<WebElement> cardNames;
 
 
-
     public void clickAnyThreeDotsOnCards() {
         try {
-            if (threeDotsOnCards.isEmpty()){
+            if (threeDotsOnCards.isEmpty()) {
                 setOfcreateCardfromBatch();
             }
-            int randomNumber = faker.number().numberBetween(0,threeDotsOnCards.size()-1);
+            int randomNumber = faker.number().numberBetween(0, threeDotsOnCards.size() - 1);
             threeDotsOnCards.get(randomNumber).click();
             setAnyCardName(cardNames.get(randomNumber).getText());
         } catch (NoSuchElementException | IndexOutOfBoundsException e) {
@@ -287,9 +287,8 @@ public class DeckModulePage extends BasePage {
         return listNamesOnCurrentBoard.get(faker.number().numberBetween(0, listNamesOnCurrentBoard.size() - 1)).getText();
     }
 
-    private String anyBoardName ;
+    private String anyBoardName;
     private String anyCardName;
-
 
     public String getAnyBoardName() {
         return anyBoardName;
@@ -312,7 +311,7 @@ public class DeckModulePage extends BasePage {
         selectBoardInputBox.sendKeys(getAnyBoardName() + Keys.ENTER);
         BrowserUtils.sleep(1);
         selectListInput.click();
-        listLinksFromOtherBoard.get(faker.number().numberBetween(0,listLinksFromOtherBoard.size()-1)).click();
+        listLinksFromOtherBoard.get(faker.number().numberBetween(0, listLinksFromOtherBoard.size() - 1)).click();
 
     }
 
@@ -320,9 +319,8 @@ public class DeckModulePage extends BasePage {
         Driver.getDriver().findElement(By.xpath("//span[@title='" + getAnyBoardName() + "']/..")).click();
     }
 
-    public void checkMovedCard(){
-       Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + getAnyCardName() + "')]")).isDisplayed());
+    public void checkMovedCard() {
+        Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + getAnyCardName() + "')]")).isDisplayed());
     }
 
-    ////h3[contains(text(),'List313')]/../..//span[contains(text(),'Card3074297')]
 }
