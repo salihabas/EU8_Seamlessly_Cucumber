@@ -34,7 +34,7 @@ Feature: Update Edit Delete Functionality
     And user clicks right arrow
     Then folder successfully created
 
-  @only
+  @SEAMLES-2034
   Scenario: User can move or copy any selected item to any folder
     When user clicks files module
     And user clicks plus upload link
@@ -53,6 +53,22 @@ Feature: Update Edit Delete Functionality
     And user clicks MoveToMainFolder button
     And user clicks Main folder
     Then user can see MovingFolder
+
+  @SEAMLES-2042
+  Scenario: User can delete any selected item from its three dots menu
+    Given user already uploaded a file
+    When user clicks threeDotForDeleting
+    And user clicks Delete file selection
+    Then verify the item is deleted
+
+  @SEAMLES-2043
+  Scenario: User can see the total number of files and folders under the files list table
+    Given user already uploaded a file
+    Given user already created a folder
+    Then total file and folder number is seen
+
+
+
 
 
 
