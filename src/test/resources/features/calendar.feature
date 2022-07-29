@@ -1,4 +1,3 @@
-@calendar
 Feature: Calendar function
 
   User Story:
@@ -14,28 +13,28 @@ Feature: Calendar function
     Background: User login successfuly with valid credential
     Given User is on the home page
 
-    @SEAMLES-2046
+
     Scenario:  User can display daily calendar view
     When User click on the calendar module
     And  User click on the calendar view dropdown menu
     And  User click on "Day" option
     Then User should see daily calendar view
 
-    @SEAMLES-2047
+
     Scenario:  User can display weekly calendar view
     When User click on the calendar module
     And  User click on the calendar view dropdown menu
     And  User click on "Week" option
     Then User should see weekly calendar view
 
-    @SEAMLES-2048
+
     Scenario:  User can display monthly calendar view
     When User click on the calendar module
     And  User click on the calendar view dropdown menu
     And  User click on "Month" option
     Then User should see monthly calendar view
 
-    @SEAMLES-2049
+    @calendar
     Scenario: User  can create a new event  and see it on the calendar
     When User click on the calendar module
     And  User  select Monthly view calendar
@@ -46,11 +45,3 @@ Feature: Calendar function
     And  User  click on Save  button
     Then User  should see new event on monthly calendar
 
-    @SEAMLES-2050
-    Scenario: User can delete any event through the Monthly Calendar
-    When User click on the calendar module
-    And  User click the event on the monthly calendar
-    And  User click More button
-    And  User click tree dot dropdown menu
-    And  User click delete button
-    Then User should see the event was erased
