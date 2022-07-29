@@ -45,6 +45,10 @@ public class UpdateEditDeletePage extends BasePage {
     @FindBy(xpath = "//*[@id=\"fileList\"]/tr[2]/td[2]/a/span[3]/a[2]")
     public WebElement secondThreeDot;
 
+    @FindBy(xpath = "//*[@id=\"fileList\"]/tr/td[2]/a/span[2]/a[2]")
+    public WebElement threeDotForDeleting;
+
+
     @FindBy(xpath = "//a[@class='menuitem action action-movecopy permanent']")
     public WebElement moveOrCopySelection;
 
@@ -70,19 +74,12 @@ public class UpdateEditDeletePage extends BasePage {
     @FindBy(xpath = "//span[.='MainFolder']")
     public WebElement browseMainFolder;
 
-    public void waitForNotStaled() {
-        while (true) {
+    @FindBy(xpath = "//a[@data-action='Delete']")
+    public WebElement deleteSelection;
 
-            try {
-                movingFolderLocator().isDisplayed();
-                System.out.println("Geçti...");
-                break;
-            } catch (StaleElementReferenceException e) {
-                System.out.println("Bekliyor...");
-                BrowserUtils.waitFor(1);
-            }
+    @FindBy(xpath = "//tr[@class='summary']")
+    public WebElement folderFileSummary;
 
-            }
-        }
+    //Methdos here returns WebElements
 
     }
