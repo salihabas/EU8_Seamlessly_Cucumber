@@ -1,4 +1,4 @@
-
+@calendar
 Feature: Calendar function
 
   User Story:
@@ -18,7 +18,6 @@ Feature: Calendar function
     And user clicks login button
     And user clicks "Calendar" module
 
-    @calendar
     @SEAMLES-2046
     Scenario:  User can display daily calendar view
     When User click on the calendar view dropdown menu
