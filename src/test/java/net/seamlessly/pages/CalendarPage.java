@@ -14,13 +14,13 @@ public class CalendarPage extends BasePage {
     @FindBy(xpath = "(//div[@class='action-item'])[1]")
     public WebElement dropdownMenu;
 
-    @FindBy(xpath = "(//span[@class='action-button__text'])[9]")
+    @FindBy(xpath = "(//span[@class='material-design-icon view-day-icon'])[2]")
     public WebElement dayButton;
 
-    @FindBy(xpath = "(//span[@class='action-button__text'])[10]")
+    @FindBy(xpath = "//span[@class='material-design-icon view-week-icon']")
     public WebElement weekButton;
 
-    @FindBy(xpath = "(//span[@class='action-button__text'])[11]")
+    @FindBy(xpath = "//span[@class='material-design-icon view-module-icon']")
     public WebElement monthButton;
 
     @FindBy(xpath = "//button[@class='button primary new-event']")
@@ -53,8 +53,8 @@ public class CalendarPage extends BasePage {
     @FindBy(xpath = "//button[normalize-space()='More']")
     public WebElement moreButton;
 
-    @FindBy(xpath = "(//span[@class='material-design-icon dots-horizontal-icon'])[4]")
-    public WebElement treeDotDropdown;
+    @FindBy(xpath = "//div[@class='action-item app-sidebar-header__menu']")
+    public WebElement sideBarDropdown;
 
     @FindBy(xpath = "//span[text()='Delete']")
     public WebElement deleteButton;
@@ -98,9 +98,9 @@ public class CalendarPage extends BasePage {
      * return webelement as a tink of event from monthly calendar
      * @param date,title
      */
-    public WebElement getEventLink (String date, String title){
+    public WebElement getEventLink (String date, String anyEvent){
         WebElement link = Driver.getDriver().findElement(By.xpath("//td[@data-date='"+ date+ "']" +
-                "//a[@class='fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past']//div[text()='"+ title +"']"));
+                "//a[@class='fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-future']//div[text()='"+ anyEvent +"']"));
         return link;
     }
 
