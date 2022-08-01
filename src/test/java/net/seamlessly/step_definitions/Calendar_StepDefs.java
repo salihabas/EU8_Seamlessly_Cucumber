@@ -17,29 +17,18 @@ public class Calendar_StepDefs {
 
     LoginPage loginPage = new LoginPage();
     CalendarPage calendarPage = new CalendarPage();
-    String time     = "7:00 PM";
-    String endTime  = "9:00 PM";
-    String date     = "2022-07-17";
-    String title    = "Alumni Meeting";
     WebElement selectedEvent;
 
-    @Given("User is on the home page")
-    public void user_is_on_the_home_page() {
-        Driver.getDriver().get("https://qa.seamlessly.net/");
-        loginPage.userName.sendKeys("Employee32");
-        loginPage.password.sendKeys("Employee123");
-        loginPage.loginButton.click();
-    }
-
-    @When("User click on the calendar module")
-    public void user_click_on_the_calendar_module() {
-        BrowserUtils.waitForVisibility(calendarPage.getModuleElement("Calendar"),10);
-        calendarPage.getModuleElement("Calendar").click();
-    }
+    String time     = "7:00 PM";
+    String endTime  = "9:00 PM";
+    String date     = "2022-08-19";
+    String anyEvent ="Alumni Meeting" ;
+    String title  ;
 
     @When("User click on the calendar view dropdown menu")
     public void user_click_on_the_calendar_view_dropdown_menu() {
         calendarPage.dropdownMenu.click();
+        BrowserUtils.waitFor(3);
     }
 
     @When("User click on {string} option")
@@ -74,14 +63,15 @@ public class Calendar_StepDefs {
         calendarPage.monthButton.click();
     }
 
-    @When("User  click on {string} button")
-    public void user_click_on_button(String string) {
+    @When("User  click on New event button")
+    public void user_click_on_New_event_button(){
         calendarPage.newEventButton.click();
     }
 
-    @When("User  input new event in {string} placeholder")
-    public void user_input_new_event_in_placeholder(String string) {
-         calendarPage.eventTitle.sendKeys(title);
+    @When("User  input {string} as a new event in placeholder")
+    public void user_input_new_event_in_placeholder(String title) {
+        this.title = title;
+        calendarPage.eventTitle.sendKeys(title);
     }
 
     @When("User  select beginning time and date")
@@ -118,9 +108,9 @@ public class Calendar_StepDefs {
         Assert.assertEquals(title,actualTitle.getText());
     }
 
-    @When("User click the event on the monthly calendar")
-    public void user_click_the_event_on_the_monthly_calendar() {
-         selectedEvent = calendarPage.getEventLink(date,title);
+    @When("User click {string} on the monthly calendar")
+    public void user_click_any_event_on_the_monthly_calendar(String title) {
+         selectedEvent = calendarPage.getEventLink(date,anyEvent);
          selectedEvent.click();
          BrowserUtils.waitFor(3);
     }
@@ -132,7 +122,7 @@ public class Calendar_StepDefs {
 
     @When("User click tree dot dropdown menu")
     public void user_click_tree_dot_dropdown_menu() {
-         calendarPage.treeDotDropdown.click();
+         calendarPage.sideBarDropdown.click();
     }
 
     @When("User click delete button")

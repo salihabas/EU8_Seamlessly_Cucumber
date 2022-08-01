@@ -14,13 +14,13 @@ public class CalendarPage extends BasePage {
     @FindBy(xpath = "(//div[@class='action-item'])[1]")
     public WebElement dropdownMenu;
 
-    @FindBy(xpath = "(//span[@class='action-button__text'])[9]")
+    @FindBy(xpath = "(//span[@class='material-design-icon view-day-icon'])[2]")
     public WebElement dayButton;
 
-    @FindBy(xpath = "(//span[@class='action-button__text'])[10]")
+    @FindBy(xpath = "//span[@class='material-design-icon view-week-icon']")
     public WebElement weekButton;
 
-    @FindBy(xpath = "(//span[@class='action-button__text'])[11]")
+    @FindBy(xpath = "//span[@class='material-design-icon view-module-icon']")
     public WebElement monthButton;
 
     @FindBy(xpath = "//button[@class='button primary new-event']")
@@ -53,46 +53,54 @@ public class CalendarPage extends BasePage {
     @FindBy(xpath = "//button[normalize-space()='More']")
     public WebElement moreButton;
 
-    @FindBy(xpath = "(//span[@class='material-design-icon dots-horizontal-icon'])[4]")
-    public WebElement treeDotDropdown;
+    @FindBy(xpath = "//div[@class='action-item app-sidebar-header__menu']")
+    public WebElement sideBarDropdown;
 
     @FindBy(xpath = "//span[text()='Delete']")
     public WebElement deleteButton;
 
 
-
-
-    // return webelement as an hour from popup menü
+    /**
+     * return webelement as an hour from popup menü
+     * @param hour
+     */
     public WebElement getHour(String hour) {
         return Driver.getDriver().findElement(By.xpath("(//li[@data-index='" + hour + "'])[1]"));
     }
 
-    // return webelement as a date from popup menü
+    /**
+     * return webelement as a date from popup menü
+     * @param date
+     */
     public WebElement getPickDate(String date) {
         return Driver.getDriver().findElement(By.xpath("//td[@title='" + date + "']"));
     }
 
-    /*
-    public WebElement getDate(String date) {
-        return Driver.getDriver().findElement(By.xpath("//td[@data-date=" + date + "]"));
-    }*/
-
-    // return as a String for time . You should give date like "year-month-day"
-    public WebElement getEventTime(String date,String time) {
+    /**
+     * return webelement as a time from monthly calendar
+     * @param date,time
+     */
+     public WebElement getEventTime(String date,String time) {
      WebElement times =  Driver.getDriver().findElement(By.xpath("//td[@data-date='"+date+"']//div[text()='"+time+"']"));
       return times;
     }
 
-    // return as a String for title . You should give date like "year-month-day"
+    /**
+     * return webelement as a title from monthly calendar
+     * @param date,title
+     */
     public WebElement getEventTitle(String date, String title ) {
        WebElement titles = Driver.getDriver().findElement(By.xpath("//td[@data-date='" + date + "']//div[text()='"+title +"']"));
        return titles;
     }
 
-    // return webelement as a link of event
-    public WebElement getEventLink (String date, String title){
+    /**
+     * return webelement as a tink of event from monthly calendar
+     * @param date,title
+     */
+    public WebElement getEventLink (String date, String anyEvent){
         WebElement link = Driver.getDriver().findElement(By.xpath("//td[@data-date='"+ date+ "']" +
-                "//a[@class='fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past']//div[text()='"+ title +"']"));
+                "//a[@class='fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-future']//div[text()='"+ anyEvent +"']"));
         return link;
     }
 
@@ -102,14 +110,11 @@ public class CalendarPage extends BasePage {
      */
     public void checkStaleElementTrue(WebElement staleElement){
         try{
-
             staleElement.getText();
-
+            Assert.assertTrue(false);
         }catch (StaleElementReferenceException e){
             System.out.println("event erased");
             Assert.assertTrue(true);
         }
-
     }
-
 }
