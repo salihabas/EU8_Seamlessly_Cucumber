@@ -17,7 +17,8 @@ Feature: Contacts function
     And user can logged in
     And user clicks contacts link and user on the contacts page
 
-    @SEAMLES-2027 @wip
+
+    @SEAMLES-2027 
     Scenario Outline: User creates a new contact with entering Company and Title
       When user clicks +New contact button
       And user see New contact form and exclamation mark

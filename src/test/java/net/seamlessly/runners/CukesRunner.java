@@ -9,17 +9,17 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {
                 //"pretty",
-                "json:target/cucumber.json",
-                "html:target/cucumber-report.html",
-                "rerun:target/rerun.txt",
-                "me.jvt.cucumber.report.PrettyReports:target/cucumber",
+               // "json:target/cucumber.json",
+                "html:target/cucumber-report.html"
+                //"rerun:target/rerun.txt",
+               // "me.jvt.cucumber.report.PrettyReports:target/cucumber",
         },
         features = "src/test/resources/features",
 
         glue = "net/seamlessly/step_definitions",
         dryRun = false,
-        //tags = "@wip",
-        publish = true
+        tags = "@wip",
+        publish = false
 
 )
 public class CukesRunner {
