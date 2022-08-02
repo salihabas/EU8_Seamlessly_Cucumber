@@ -48,22 +48,28 @@ public class Contacts_StepDefs {
 
     @And("user enters {string} as name")
     public void userEntersAsName(String name) {
-        action.click(contactsPage.newContactNameValue).sendKeys(contactsPage.newContactNameValue, name).pause(2000).perform();
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(2);
+        //String script = "arguments[0].value='"+name+"'";
+       // ((JavascriptExecutor) Driver.getDriver()).executeScript(script, contactsPage.newContactNameValue);
+        action.doubleClick(contactsPage.newContactNameValue).pause(100)
+                .sendKeys(contactsPage.newContactNameValue, name).pause(100).build().perform();
+
+        BrowserUtils.waitFor(1);
+
+
     }
     @When("user enters {string} as company name")
     public void user_enters_company_name(String companyName){
 
-        action.sendKeys(contactsPage.companyName, companyName).pause(1000).perform();
-        //contactsPage.writingCompanyName(companyName);
+        action.sendKeys(contactsPage.companyName, companyName).pause(100).perform();
+
 
     }
     @When("user enters {string}")
     public void user_enters(String title) {
 
-        action.sendKeys(contactsPage.title, title).pause(3).perform();
-
-
+        action.sendKeys(contactsPage.title, title).pause(100).perform();
+        BrowserUtils.waitFor(1);
     }
     @Then("user sees {string} in the middle column")
     public void user_sees_in_the_middle_column_and_doesn_t_see_upper_arrow(String companyName) {
