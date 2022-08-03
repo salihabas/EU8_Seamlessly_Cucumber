@@ -39,6 +39,7 @@ public class UpdateEditDelete_StepDefs {
 
     @Then("file successfully uploaded")
     public void file_successfully_uploaded() {
+        BrowserUtils.sleep(2);
         Assert.assertTrue(uedPage.uploadedFileLocator().isDisplayed());
     }
 
